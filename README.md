@@ -13,7 +13,7 @@
 * 个人中心
 
 # 快速构建
-## 我自己的环境是node-v4.4.4 npm-v4.1.2 webpack-1.x
+#### 我自己的环境是node-v4.4.4 npm-v4.1.2 webpack-1.x
 
 		mkdir react-dianping
 		git clone https://github.com/sheweifan/react-dianping.git
