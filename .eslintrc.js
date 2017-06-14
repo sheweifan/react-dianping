@@ -17,5 +17,7 @@ module.exports = {
     semi: ['error', 'always'],
     'no-unused-vars': ['warn'],
     'no-console': 0,
+    'no-extra-semi':1,
+    "indent": ["error", 4]
   },
 };

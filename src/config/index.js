@@ -4,8 +4,8 @@ export const fetchUrl = 'http://rapapi.org/mockjsdata/20089/';
 
 
 export const indexBannerSize = {
-  width:750,
-  height:280,
+    width:750,
+    height:280,
 };
 
 
