@@ -4,7 +4,7 @@
 
 基于react+react-router+react-redux+antd-mobile+rapjs的react入门项目
 
-# 页面
+## 页面
 * 首页
 * 列表页 （搜索页面）
 * 详情页 
@@ -12,7 +12,7 @@
 * 登陆
 * 个人中心
 
-# 快速构建
+## 快速构建
 #### 我自己的环境是node-v4.4.4 npm-v4.1.2 webpack-1.x
 
 		mkdir react-dianping
@@ -20,7 +20,7 @@
 		cd react-dianping
 		npm i && npm start
 
-# TODO-LIST
+## TODO-LIST
 * 详情页`购买``收藏``点评`功能
 * 注册页面
 * 所有组件添加`PropTypes`
