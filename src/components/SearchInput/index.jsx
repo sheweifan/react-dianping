@@ -1,5 +1,4 @@
-import React,{Component} from 'react';
-
+import React,{ Component , PropTypes } from 'react';
 import { Icon } from 'antd-mobile';
 
 import  './index.less';
@@ -26,7 +25,7 @@ class SearchInput extends Component {
 		};
 	}
 	render(){
-		let {searchInputInfo} = this.state;
+		let { searchInputInfo } = this.state;
 		return (
 			<input 
 				type="search" 
@@ -38,7 +37,13 @@ class SearchInput extends Component {
 			/>
 		)		
 	}
-}
+};
+
+SearchInput.PropTypes = {
+    defaultValue:PropTypes.string,
+    enterChange:PropTypes.func.isRequired,
+};
 
 
-export default SearchInput
+
+export default SearchInput;

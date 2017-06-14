@@ -1,18 +1,14 @@
-import React,{Component} from 'react';
-
-
+import React,{ Component , PropTypes } from 'react';
 import { NavBar, Icon } from 'antd-mobile';
+
+import SearchInput from '../SearchInput/index';
 
 import icon_my from '../../static/icons/my.svg';
 
 import  './index.less';
 
-import SearchInput from '../SearchInput/index';
-
-
-let HomeHeader = (props,context) =>  {
-	const { userInfo } = props;
-	// console.log('userInfo',typeof userInfo,userInfo,Object.keys(userInfo));
+const HomeHeader = (props,context) => {
+	const { userInfo , enterChange , defaultValue } = props;
 	const { router } = context;
 	return (
 		<div className="header_contain header_home_contain">
@@ -21,7 +17,7 @@ let HomeHeader = (props,context) =>  {
 				iconName=""
 			>
 				<div className="header_home_from">
-					<SearchInput enterChange={props.enterChange} defaultValue={props.defaultValue}/>
+					<SearchInput enterChange={enterChange} defaultValue={defaultValue}/>
 					<Icon type="search" size="xs" className="header_home_icon"/>
 					<span className="header_mycenter_btn">
 						{
@@ -38,6 +34,12 @@ let HomeHeader = (props,context) =>  {
 
 HomeHeader.contextTypes = {
     router: Object
+}
+
+HomeHeader.PropTypes = {
+    enterChange: PropTypes.func.isRequired,
+    defaultValue: PropTypes.string,
+    userInfo: PropTypes.object,
 }
 
 export default HomeHeader

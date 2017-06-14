@@ -4,10 +4,10 @@ import Stars from '../Stars/index';
 
 import './index.less';
 
-let EvaluateItem = (props) =>  {
-	var {avatar,content,imgs,name,stars} = props;
-	var _imgs = [];
-	var _img = [];
+let EvaluateItem = (props) => {
+	const { avatar , content , imgs , name , stars } = props;
+	let _imgs = [];
+	let _img = [];
 
 	imgs.map((item,i)=>{
 		_img.push(<div key={i} className="img"><div><img src={item}/></div></div>);
@@ -15,7 +15,7 @@ let EvaluateItem = (props) =>  {
 			_imgs.push(<div key={i} className="evaluate_item_imgs">{_img}</div>)
 			_img = [];
 		}
-	})
+	});
 
 	return (
 		<div className="evaluate_item ">
@@ -32,7 +32,7 @@ let EvaluateItem = (props) =>  {
 			</div>
 		</div>
 	)
-}
+};
 
 EvaluateItem.PropTypes = {
     avatar: PropTypes.string.isRequired,
@@ -40,6 +40,6 @@ EvaluateItem.PropTypes = {
     name: PropTypes.string.isRequired,
     imgs: PropTypes.array.isRequired,
     stars: PropTypes.number.isRequired,
-}
+};
 
-export default EvaluateItem
+export default EvaluateItem;

@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component , PropTypes } from 'react';
 import { Link } from 'react-router'
 
 import { WingBlank,WhiteSpace } from 'antd-mobile';
@@ -36,11 +36,21 @@ let MallItem = (props,context) =>{
 		</Link>
 	)
 
-}
+};
 
 MallItem.contextTypes = {
     router: Object
-}
+};
+
+MallItem.PropTypes = {
+    _id:PropTypes.string.isRequired,
+    describe:PropTypes.string.isRequired,
+    postion:PropTypes.number.isRequired,
+    sales:PropTypes.number.isRequired,
+    title:PropTypes.string.isRequired,
+    img:PropTypes.string.isRequired,
+    price:PropTypes.number.isRequired
+};
 
 
 export default MallItem;

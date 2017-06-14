@@ -1,7 +1,7 @@
-import React,{Component} from 'react';
-
+import React,{ Component , PropTypes } from 'react';
 import { NavBar } from 'antd-mobile';
-let header = (props,context) =>  (
+
+const header = (props,context) =>  (
 	<div className="header_contain header_other_contain">
 		<NavBar 
 			onLeftClick={()=>{
@@ -17,10 +17,17 @@ let header = (props,context) =>  (
 			}
 		</NavBar>
 	</div>
-)
+);
 
 header.contextTypes = {
     router: Object
-}
+};
+
+
+header.PropTypes = {
+    title: PropTypes.string.isRequired,
+    backTo: PropTypes.string,
+};
+
 
 export default header

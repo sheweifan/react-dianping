@@ -1,5 +1,5 @@
-import React,{Component} from 'react';
-import { ListView , ActivityIndicator} from 'antd-mobile';
+import React,{ Component , PropTypes } from 'react';
+import { ListView , ActivityIndicator } from 'antd-mobile';
 
 import ListHeader from '../ListHeader/index'
 
@@ -26,7 +26,7 @@ class MallList extends Component{
 		this.data = [];
 	}
 	render(){
-		let { dataSource ,pageNow , pageCount ,isLoading} = this.state;
+		let { dataSource ,pageNow , pageCount ,isLoading } = this.state;
 
 		let MallListFooter = ()=> {
 			
@@ -87,7 +87,6 @@ class MallList extends Component{
 	}
 	getData(){
 		let { pageNow } = this.state;
-		// console.log(pageNow)
 		pageNow++
 		this.setState({
 			isLoading:true,
@@ -95,19 +94,16 @@ class MallList extends Component{
 		});
 
 		let {body,url} = this.props;
-		// console.log(keyword,category)
 		
 		let obj = Object.assign(body,{
 			pageIndex:pageNow
 		});
-		
-		// console.log(url);
+
 		fetchData(url,obj)
 			.then(data=>{
 				if(data.isOk){
 					var _data = data.data;
 					this.data = this.data.concat(_data)
-					// console.log(this.data)
 					this.setState({
 						dataSource:this.state.dataSource.cloneWithRows(this.data),
 						pageNow:pageNow,
@@ -118,8 +114,7 @@ class MallList extends Component{
 			})
 	}
 	onEndReached(){
-		// console.log(this.state.dataSource)
-		let { pageNow , isLoading , pageCount} = this.state;
+		let { pageNow , isLoading , pageCount } = this.state;
 		if(isLoading || pageNow === pageCount) return;
 		
 		this.getData();
@@ -128,8 +123,7 @@ class MallList extends Component{
 		this.getData();
 	}
 	componentDidUpdate(prevProps){
-        let {body,url} = this.props;
-        // console.log(url)
+        let { body , url } = this.props;
         if (body === prevProps.body && url === prevProps.url) {
             return
         }
@@ -148,5 +142,12 @@ class MallList extends Component{
 	}
 
 }
+
+MallList.PropTypes = {
+    className: PropTypes.string,
+    body: PropTypes.object.isRequired,
+    url: PropTypes.string.isRequired,
+    childComponent: PropTypes.element
+};
 
 export default MallList

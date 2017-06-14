@@ -1,7 +1,9 @@
-import React,{Component} from 'react';
-import { WingBlank , WhiteSpace} from 'antd-mobile';
+import React,{ Component , PropTypes } from 'react';
+import { WingBlank , WhiteSpace } from 'antd-mobile';
+
 import './index.less';
-let ListHeader = (props)=>(
+
+const ListHeader = (props)=>(
 	<div className="list_header">
 		<WhiteSpace size="md"/>
 		<WingBlank size="md">
@@ -12,5 +14,9 @@ let ListHeader = (props)=>(
 		<WhiteSpace size="sm"/>
 	</div>
 );
+
+ListHeader.PropTypes = {
+    children: PropTypes.element.isRequired
+};
 
 export default ListHeader;
