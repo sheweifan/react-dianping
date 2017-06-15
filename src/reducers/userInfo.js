@@ -1,4 +1,4 @@
-import { USERINFO_UPDATE,update } from '../actions/userInfo';
+import { USERINFO_UPDATE } from '../actions/userInfo';
 
 
 export default function userInfo(state={},action){
