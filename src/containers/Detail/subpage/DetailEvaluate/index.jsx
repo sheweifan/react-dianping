@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React,{ Component , PropTypes } from 'react';
 import { List , Icon } from 'antd-mobile';
 const Item = List.Item;
 
@@ -69,7 +69,7 @@ class DetailEvaluate extends Component{
 }
 
 DetailEvaluate.contextTypes = {
-    router: Object
+    router: PropTypes.object
 }
 
 export default DetailEvaluate;

@@ -39,7 +39,7 @@ let MallItem = (props,context) =>{
 };
 
 MallItem.contextTypes = {
-    router: Object
+    router: PropTypes.object
 };
 
 MallItem.PropTypes = {

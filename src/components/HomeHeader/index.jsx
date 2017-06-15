@@ -33,7 +33,7 @@ const HomeHeader = (props,context) => {
 }
 
 HomeHeader.contextTypes = {
-    router: Object
+    router: PropTypes.object
 }
 
 HomeHeader.PropTypes = {

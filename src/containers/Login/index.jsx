@@ -17,7 +17,7 @@ import './index.less';
 
 class Login extends Component {
     static contextTypes = {
-        router: Object
+        router: PropTypes.object
     }
     
     constructor(props,context) {

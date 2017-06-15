@@ -13,8 +13,6 @@ import './static/styles/common.css';
 window.__DEV__ = process.env.NODE_ENV === 'development';
 console.log('开发环境',__DEV__);
 
-    // <Provider>
-    // </Provider>,
 ReactDOM.render(
 	<Provider store={store()}>
     	<AppRouter />

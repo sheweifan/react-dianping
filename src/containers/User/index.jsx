@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component , PropTypes } from 'react';
 import {connect} from 'react-redux';
 
 import { Button , WingBlank , WhiteSpace} from 'antd-mobile';
@@ -39,6 +39,9 @@ import { removeItem } from '../../until/localStorage';
 // }
 
 class User extends Component{
+    static contextTypes = {
+        router: PropTypes.object
+    }
     constructor(props, context){
         super(props, context);
     }
@@ -75,10 +78,6 @@ class User extends Component{
             router.replace('/login');
         }
     }
-}
-
-User.contextTypes = {
-    router: Object
 }
 
 let mapStateToProps = (state)=>{

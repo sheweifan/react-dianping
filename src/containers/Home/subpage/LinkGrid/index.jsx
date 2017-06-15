@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component , PropTypes } from 'react';
 import { Grid } from 'antd-mobile';
 
 import './index.less';
@@ -77,7 +77,7 @@ let LinkGrid = (props,context) => (
 )
 
 LinkGrid.contextTypes = {
-    router: Object
+    router: PropTypes.object
 }
 
 export default LinkGrid;

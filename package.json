@@ -4,7 +4,7 @@
   "main": "lib/index",
   "scripts": {
     "start": "set NODE_ENV=development && webpack-dev-server -d --config ./webpack.dev.config.js --host 0.0.0.0 --port 8000 --inline --hot",
-    "build": "webpack --progress --colors --profile --display-modules",
+    "build": "set NODE_ENV=production && webpack --progress --colors --profile --display-modules",
     "lint": "eslint src/ webpack.*.js --cache --fix"
   },
   "license": "MIT",

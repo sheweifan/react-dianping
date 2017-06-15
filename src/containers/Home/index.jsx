@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component , PropTypes } from 'react';
 import {connect} from 'react-redux';
 
 
@@ -24,7 +24,7 @@ let Home = (props, context) =>{
 }
 
 Home.contextTypes = {
-    router: Object
+    router: PropTypes.object
 }
 
 

@@ -1,4 +1,4 @@
-import React,{Component} from 'react';
+import React,{ Component , PropTypes } from 'react';
 import { NavBar, Icon } from 'antd-mobile';
 
 import SearchInput from '../SearchInput/index';
@@ -33,7 +33,7 @@ let SearchHeader = (props,context) => {
 };
 
 SearchHeader.contextTypes = {
-    router: Object
+    router: PropTypes.object
 };
 
 

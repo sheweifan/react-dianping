@@ -20,7 +20,7 @@ const header = (props,context) =>  (
 );
 
 header.contextTypes = {
-    router: Object
+    router: PropTypes.object
 };
 
 

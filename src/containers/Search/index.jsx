@@ -1,4 +1,4 @@
-import React,{ Component } from 'react'
+import React,{ Component , PropTypes } from 'react'
 
 import { MallListUrl } from '../../config/index';
 import SearchHeader from '../../components/SearchHeader/index';
@@ -6,7 +6,7 @@ import MallList from '../../components/MallList/index';
 
 class Search extends Component{
 	static contextTypes = {
-	    router: Object
+	    router: PropTypes.object
 	}
 	
 	constructor(props,context){
