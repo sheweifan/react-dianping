@@ -16,7 +16,7 @@ let Home = (props, context) =>{
             <LinkGrid />
             <MallList renderHeader={()=>'猜你喜欢'} body={{category:'guess'}}/>
             <HomeHeader 
-                enterChange={(e)=> {context.router.push(`/search/all/${e}`)}}
+                enterChange={(e)=> {context.router.push(`/search/all/${encodeURIComponent(e)}`)}}
                 userInfo={userInfo}
             />
         </div>
@@ -25,19 +25,19 @@ let Home = (props, context) =>{
 
 Home.contextTypes = {
     router: PropTypes.object
-}
+};
 
 
 let mapStateToProps = (state)=>{
     return {
         userInfo:state.userInfo
     }
-}
+};
 
 let mapDispatchToProps = (dispatch)=>{
     return {
     }
-}
+};
 
 export default connect(
     mapStateToProps,

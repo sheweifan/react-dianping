@@ -68,8 +68,12 @@ let LinkGrid = (props,context) => (
 		className="index_link_grid"
 		onClick={ (el,index)=>{
 			// context.router.push();
+			// context.router.push({ 
+			// 	pathname: '/search/'+data[index].category,
+			// 	state: {info:data[index].text} 
+			// });
 			context.router.push({ 
-				pathname: '/search/'+data[index].category,
+				pathname: '/search/'+encodeURIComponent(data[index].text),
 				state: {info:data[index].text} 
 			});
 		} }
