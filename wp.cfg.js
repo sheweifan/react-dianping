@@ -40,7 +40,8 @@ module.exports = {
                     plugins: [
                         ['transform-runtime', { polyfill: false }],
                         ['import', [{ 'style': 'css', 'libraryName': 'antd-mobile' }]],
-                        // 'transform-decorators-legacy'
+                        // "transform-decorators"
+                        "transform-decorators-legacy"
                     ],
                     presets: ['es2015', 'stage-0', 'react'],
                 },
