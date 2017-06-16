@@ -4,8 +4,9 @@ import { connect } from 'react-redux';
 
 
 import Header from '../../components/Header/index';
-import Collect from '../../components/Collect/index';
 import LoadingWrap from '../../components/LoadingWrap/index';
+
+import DetailCollect from './subpage/DetailCollect/index';
 import DetailMsg from './subpage/DetailMsg/index';
 import PhoneCallAndMap from './subpage/PhoneCallAndMap/index';
 import DetailEvaluate from './subpage/DetailEvaluate/index';
@@ -39,12 +40,12 @@ class Detail extends Component {
 	render() {
 		const { data , detailId } = this.state;
 		const { userInfo } = this.props;
-
+		// console.log('data.collected',data.collected	)
 		return (
 			<div>
 				<LoadingWrap loading={ Object.keys(data).length ===0 }>
-					<DetailMsg data={data} />
-					<PhoneCallAndMap data={data} />
+					<DetailMsg data={ data } />
+					<PhoneCallAndMap data={ data } />
 				</LoadingWrap>
 
 				<WhiteSpace size="md" />
@@ -54,14 +55,20 @@ class Detail extends Component {
 				<WhiteSpace size="md" />
 				
 				<LoadingWrap loading={ Object.keys(data).length ===0 }>
-					<DetailTime data={data.time}/>
+					<DetailTime data={ data.time }/>
 				</LoadingWrap>
 
 				<WhiteSpace size="md" />
 
 				<Header 
 					title="详情页"
-					rightContent={ <Collect userInfo={userInfo}/> }
+					rightContent={ 
+						<DetailCollect 
+							userInfo={ userInfo }
+							collected={ data.collected }
+							detailId={ detailId }
+						/> 
+					}
 				/>
 			</div>
 		)
