@@ -24,6 +24,7 @@
 	border-right: 1PX solid #e5e5e5;
 	box-sizing: border-box;
 
+
 	&:nth-last-child(1){
 		border-right: 0;
 	}
@@ -32,6 +33,17 @@
 	&.light{
 		color:#fff;
 		background: #108ee9
+	}
+
+
+	&:active{
+		background: #ddd;
+	}
+
+
+	&.disabled{
+		background: #ddd;
+		color:#bbb;
 	}
 
 }
