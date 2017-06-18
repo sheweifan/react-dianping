@@ -23,6 +23,9 @@ export const detailMesUrl = fetchUrl+'api/detailMes';
 // 评论列表
 export const evaluateListUrl = fetchUrl+'api/evaluateList';
 
+// 发起评论
+export const evaluateUrl = fetchUrl+'api/evaluate';
+
 // 登陆
 export const loginUrl = fetchUrl+'api/login';
 

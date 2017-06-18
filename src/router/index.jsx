@@ -6,6 +6,7 @@ import Home from '../containers/Home/index';
 import Search from '../containers/Search/index';
 import Detail from '../containers/Detail/index';
 import EvaluateList from '../containers/EvaluateList/index';
+import Evaluate from '../containers/Evaluate/index';
 import Login from '../containers/Login/index';
 import User from '../containers/User/index';
 
@@ -19,6 +20,7 @@ let AppRouter = () => (
 			<Route path="search/:category(/:keyword)" component={Search}/>
 			<Route path="detail/:id" component={Detail}/>
 			<Route path="evaluateList/:id" component={EvaluateList}/>
+			<Route path="evaluate/:id" component={Evaluate}/>
 			<Route path="login" component={Login}/>
 			<Route path="user" component={User}/>
 

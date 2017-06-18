@@ -1,10 +1,11 @@
-import React , { Component } from 'react';
+import React , { Component , PropTypes } from 'react';
 import { WhiteSpace } from 'antd-mobile';
 import { connect } from 'react-redux';
 
 
 import Header from '../../components/Header/index';
 import LoadingWrap from '../../components/LoadingWrap/index';
+import FixedButton from '../../components/FixedButton/index';
 
 import DetailCollect from './subpage/DetailCollect/index';
 import DetailMsg from './subpage/DetailMsg/index';
@@ -30,6 +31,9 @@ let mapDispatchToProps = (dispatch)=>{
 
 @connect(mapStateToProps,mapDispatchToProps)
 class Detail extends Component {
+	static contextTypes = {
+	    router: PropTypes.object
+	}
 	constructor(props, context) {
 		super(props, context);
 		this.state={
@@ -39,6 +43,7 @@ class Detail extends Component {
 	}
 	render() {
 		const { data , detailId } = this.state;
+		const { router } = this.context;
 		const { userInfo } = this.props;
 		// console.log('data.collected',data.collected	)
 		return (
@@ -59,6 +64,19 @@ class Detail extends Component {
 				</LoadingWrap>
 
 				<WhiteSpace size="md" />
+
+				<FixedButton 
+					options={[
+						{
+							name:'我也要点评',
+							light:true,
+							onClick:()=>{
+								router.push('evaluate/'+detailId)
+							},
+							disabled: Object.keys(userInfo).length === 0
+						}
+					]}
+				/>
 
 				<Header 
 					title="详情页"
