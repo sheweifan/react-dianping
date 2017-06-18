@@ -25,7 +25,7 @@ let mapDispatchToProps = (dispatch)=>{
 const default_val = 5;
 
 @connect(mapStateToProps,mapDispatchToProps)
-class evaluate extends Component {
+class Evaluate extends Component {
 	static contextTypes = {
 	    router: PropTypes.object
 	}
@@ -98,4 +98,4 @@ class evaluate extends Component {
 }
 
 
-export default evaluate;
+export default Evaluate;
