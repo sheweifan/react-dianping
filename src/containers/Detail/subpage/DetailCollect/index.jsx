@@ -34,7 +34,7 @@ class DetailCollect extends Component{
 };
 
 DetailCollect.PropTypes = {
-   
+   collected : PropTypes.bool.isRequired
 };
 
 export default DetailCollect;

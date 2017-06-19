@@ -11,7 +11,7 @@ import  './index.less';
 
 let MallList = (props)=>{
 	return (
-		<LoadMore {...props} childComponent={MallItem} url={mallListUrl} />
+		<LoadMore {...props} childComponent={MallItem} url={props.listUrl || mallListUrl} />
 	)
 };
 

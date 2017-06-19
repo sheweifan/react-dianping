@@ -11,29 +11,34 @@ let MallItem = (props,context) =>{
 	let {_id,describe,postion,sales,title,img,price} = props;
 
 	return (
-		<Link to={`/detail/${_id}`} className="mall_item">
-			<div className="mall_item_inner">
-				<WhiteSpace size="sm"/>
-				<WingBlank size="ms" className="clearfix">
-					
-					<div className="mall_item_img">
-						<img src={img} />
-					</div>
-					<div className="mall_item_info">
-						<p className="mall_item_title">
-							<span className="postion">{postion}m</span>
-							<span className="title">{title}</span>
-						</p>
-						<p className="mall_item_describe">{describe}</p>
-						<p className="mall_item_pirce">
-							<span className="sales">已售{sales.toString()}</span>
-							<span className="price">¥{price.toString()}</span>
-						</p>
-					</div>
-				</WingBlank>
-				<WhiteSpace size="sm"/>
-			</div>
-		</Link>
+		<div className="mall_item">
+			<Link to={`/detail/${_id}`}>
+				<div className="mall_item_inner">
+					<WhiteSpace size="sm"/>
+					<WingBlank size="ms" className="clearfix">
+						
+						<div className="mall_item_img">
+							<img src={img} />
+						</div>
+						<div className="mall_item_info">
+							<p className="mall_item_title">
+								<span className="postion">{postion}m</span>
+								<span className="title">{title}</span>
+							</p>
+							<p className="mall_item_describe">{describe}</p>
+							<p className="mall_item_pirce">
+								<span className="sales">已售{sales.toString()}</span>
+								<span className="price">¥{price.toString()}</span>
+							</p>
+						</div>
+					</WingBlank>
+					<WhiteSpace size="sm"/>
+				</div>
+			</Link>
+			{
+				// <div className="mall_item_delete">取消收藏</div>
+			}	
+		</div>
 	)
 
 };
