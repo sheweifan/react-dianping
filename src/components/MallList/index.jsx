@@ -8,11 +8,18 @@ import { mallListUrl  } from '../../config/index';
 import fetchData from '../../until/fetchData';
 
 import  './index.less';
-
 let MallList = (props)=>{
 	return (
-		<LoadMore {...props} childComponent={MallItem} url={props.listUrl || mallListUrl} />
+		<LoadMore 
+			{...props}
+			childComponent={ (props)=> <MallItem  { ...props } /> }
+			url={props.listUrl} 
+		/>
 	)
 };
 
-export default MallList
+MallList.defaultProps = {
+	listUrl:mallListUrl
+};
+
+export default MallList;
