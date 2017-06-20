@@ -1,10 +1,16 @@
 import React,{ Component , PropTypes } from 'react';
 
-const Touchs = () => {
+const Touchs = ({
+	swipe
+}) => {
 	return (ComponentWrap)=>{
-		return class extends Component{
+		return class extends ComponentWrap{
 			constructor(props){
 				super(props);
+				
+				this._touchStart = this._touchStart.bind(this)
+				this._touchMove = this._touchMove.bind(this)
+				this._touchEnd = this._touchEnd.bind(this)
 			}
 
 			_touchStart(e){
@@ -17,6 +23,8 @@ const Touchs = () => {
 
 			_touchEnd(e){
 				console.log('_touchEnd',e.touches);
+
+				swipe.call(this);
 			}
 
 			render(){
@@ -24,8 +32,8 @@ const Touchs = () => {
 					{ ...this.props }
 					touchs={{
 						onTouchStart:this._touchStart,
-						onTouchMove:this._touchMove,
-						onTouchEnd:this._touchEnd
+						onTouchMove :this._touchMove,
+						onTouchEnd  :this._touchEnd
 					}}
 				/>
 			}

@@ -12,14 +12,15 @@ let MallList = (props)=>{
 	return (
 		<LoadMore 
 			{...props}
-			childComponent={ (props)=> <MallItem  { ...props } /> }
+			childComponent={ props.childComponent }
 			url={props.listUrl} 
 		/>
 	)
 };
 
 MallList.defaultProps = {
-	listUrl:mallListUrl
+	listUrl: mallListUrl,
+	childComponent: MallItem
 };
 
 export default MallList;
