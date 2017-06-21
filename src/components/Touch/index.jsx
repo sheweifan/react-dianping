@@ -1,26 +1,26 @@
 import React,{ Component , PropTypes , cloneElement ,Children  } from 'react';
 import { findDOMNode } from 'react-dom';
-var privateProps = {
+
+const privateProps = {
 	children: true,
 	direction: true,
 	options: true,
 	recognizeWith: true,
 	vertical: true,
+	pageX:true,
+	pageY:true,
 	touching: true,
-	touchingTop: true,
-	touchingLeft: true,
-	touchingRight: true,
-	touchingBottom: true,
-	touchingHorizontal: true,
-	touchingVertical: true,
-	touchEnd: true,
-	touchEndTop: true,
-	touchEndLeft: true,
-	touchEndRight: true,
-	touchEndBottom: true,
-	touchEndHorizontal: true,
-	touchEndVertical: true,
+	touchEnd: true
 };
+
+var directionInfo = [
+	'未滑动',
+	'向上',
+	'向下',
+	'向左',
+	'向右',
+];
+
 class Touch extends Component{
 	static defaultProps = {
 		
@@ -32,7 +32,6 @@ class Touch extends Component{
 		this._TouchMove = this._TouchMove.bind(this);
 		this._TouchEnd= this._TouchEnd.bind(this);
 	}
-	// 1向上 2向下 3向左 4向右 0未滑动
 	getDirection(startx, starty, endx, endy) {
         var angx = endx - startx;
         var angy = endy - starty;
@@ -69,35 +68,22 @@ class Touch extends Component{
 	}
 	_TouchMove(e){
 		const { props , startPontX , startPontY , startPageX , startPageY , getDirection } = this;
-		const { touching , touchingTop , touchingBottom , touchingLeft , touchingRight , touchingHorizontal , touchingVertical  } = props;
+		const { touching } = props;
 		const point = e.touches[0];
 		this.movePageX = point.pageX - startPageX;
 		this.movePageY = point.pageY - startPageY;
 
-		touching && touching(this.movePageX,this.movePageY);
-
 		const direction = getDirection( startPontX,startPontY,point.pageX,point.pageY);
-		if(direction === 1){
-			// 上
-			touchingTop && touchingTop(this.movePageX,this.movePageY);
-		}else if(direction === 2){
-			// 下
-			touchingBottom && touchingBottom(this.movePageX,this.movePageY);
-		}else if(direction === 3){
-			// 左
-			touchingLeft && touchingLeft(this.movePageX,this.movePageY);
-		}else if(direction === 4){
-			// 右
-			touchingRight && touchingRight(this.movePageX,this.movePageY);
-		}
 
-		if(direction === 1 || direction === 2){
-			// 垂直
-			touchingVertical && touchingVertical(this.movePageX,this.movePageY);
-		}else{
-			// 水平
-			touchingHorizontal && touchingHorizontal(this.movePageX,this.movePageY);
-		}
+		touching && touching(this.movePageX,this.movePageY);
+		touching && touching.call(this,{
+			direction,
+			directionInfo:directionInfo[direction],
+			startPageX,
+			startPageY,
+			movePageX:this.movePageX,
+			movePageY:this.movePageY,
+		});
 	}
 	_TouchEnd(e){
 		// 记录结束
@@ -105,50 +91,39 @@ class Touch extends Component{
 		this.endPageY = this.movePageY;
 
 		const { props , startPontX , startPontY , startPageX , startPageY , getDirection } = this;
-		const { touchEnd , touchEndTop , touchEndBottom , touchEndLeft , touchEndRight , touchEndHorizontal , touchEndVertical  } = props;
+		const { touchEnd } = props;
 		const point = e.changedTouches[0];
 
-		touchEnd && touchEnd(this.movePageX,this.movePageY);
+		const direction = getDirection( startPontX,startPontY,point.pageX,point.pageY );
 
-		const direction = getDirection( startPontX,startPontY,point.pageX,point.pageY);
+		touchEnd && touchEnd.call(this,{
+			direction,
+			directionInfo:directionInfo[direction],	
+			startPageX,
+			startPageY,
+			movePageX:this.movePageX,
+			movePageY:this.movePageY,
+			endPageX:this.endPageX,
+			endPageY:this.endPageY,
+		});
 
-		if(direction === 1){
-			// 上
-			touchEndTop && touchEndTop(this.movePageX,this.movePageY);
-		}else if(direction === 2){
-			// 下
-			touchEndBottom && touchEndBottom(this.movePageX,this.movePageY);
-		}else if(direction === 3){
-			// 左
-			touchEndLeft && touchEndLeft(this.movePageX,this.movePageY);
-		}else if(direction === 4){
-			// 右
-			touchEndRight && touchEndRight(this.movePageX,this.movePageY);
-		}
-
-		if(direction === 1 || direction === 2){
-			// 垂直
-			touchEndVertical && touchEndVertical(this.movePageX,this.movePageY);
-		}else{
-			// 水平
-			touchEndHorizontal && touchEndHorizontal(this.movePageX,this.movePageY);
-		}
 	}
     render(){
-    	const { className , children } = this.props;
-    	let props = {};
+    	const { children } = this.props;
+    	let props = {
+    		
+    	};
 		Object.keys(this.props).forEach(function (i) {
 			if (!privateProps[i]) {
 				props[i] = this.props[i];
 			}
 		}, this);
 
-		var self = this;
-		props.ref = function(target) {
-			if (self.props.ref) {
-				self.props.ref(target);
+		props.ref = (target) =>{
+			if (this.props.ref) {
+				this.props.ref(target);
 			}
-			self.target = target;
+			this.target = target;
 		};
        	return cloneElement(Children.only(children), props)
     }
@@ -156,11 +131,19 @@ class Touch extends Component{
 		this.target.addEventListener('touchstart',this._TouchStart);
 		this.target.addEventListener('touchmove',this._TouchMove);
 		this.target.addEventListener('touchend',this._TouchEnd);
+		this.target.addEventListener('touchcancel',this._TouchEnd);
     }
     componentWillUnmount(){
 		this.target.removeEventListener('touchstart',this._TouchStart);
 		this.target.removeEventListener('touchmove',this._TouchMove);
 		this.target.removeEventListener('touchend',this._TouchEnd);
+		this.target.removeEventListener('touchcancel',this._TouchEnd);
+    }
+    componentWillReceiveProps(nextProps){
+    	const { pageX , pageY } = nextProps;
+
+    	this.endPageX = pageX;
+    	this.endPageY = pageY;
     }
 }
 

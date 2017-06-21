@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/index';
 import MallItem from '../../components/MallItem/index';
 import MallList from '../../components/MallList/index';
-import Touch from '../../components/Touch/index';
+import SwipeOut from '../../components/SwipeOut/index';
 
 import { userCollectUrl } from '../../config/index';
 
@@ -26,71 +26,25 @@ const UserCollect = (props) =>{
 	const { openId } = userInfo;
 	return (
 		<div>
-
-			{
-				// <Touch 
-				// 	touching={(x,y)=>{
-				// 		// console.log(x,y)
-				// 	}}
-				// 	touchingTop={()=>{
-				// 		// console.log('touchingTop');
-				// 	}}
-				// 	touchingLeft={()=>{
-				// 		// console.log('touchingLeft');
-				// 	}}
-				// 	touchingRight={()=>{
-				// 		// console.log('touchingRight');
-				// 	}}
-				// 	touchingBottom={()=>{
-				// 		// console.log('touchingBottom');
-				// 	}}
-				// 	touchingHorizontal={()=>{
-				// 		// console.log('touchHorizontal')
-				// 	}}
-				// 	touchingVertical={()=>{
-				// 		// console.log('touchVertical')
-				// 	}}
-
-				// 	touchEnd={(x,y)=>{
-				// 		// console.log(x,y)
-				// 		console.log('touchEnd')
-				// 	}}
-				// 	touchEndTop={()=>{
-				// 		console.log('touchEndTop');
-				// 	}}
-				// 	touchEndLeft={()=>{
-				// 		console.log('touchEndLeft');
-
-				// 	}}
-				// 	touchEndRight={()=>{
-				// 		console.log('touchEndRight');
-				// 	}}
-				// 	touchEndBottom={()=>{
-				// 		console.log('touchEndBottom');
-				// 	}}
-				// 	touchEndHorizontal={()=>{
-				// 		console.log('touchEndHorizontal')
-				// 	}}
-				// 	touchEndVertical={()=>{
-				// 		console.log('touchEndVertical')
-				// 	}}
-				// >
-				// 	<div style={{width:'100%',height:'3rem',background:'red'}}></div>
-				// </Touch>
-			}
 			<MallList 
 				body={{_id:'openId'}}
 				listUrl={ userCollectUrl }
 				childComponent={ (props)=>{
 					return (
-						<Touch
-							refs="target"
-							touchingLeft={()=>{
-								console.log('touchingLeft');
-							}}
+						<SwipeOut 
+							opts={[
+								{
+									text:'取消收藏',
+									onClick:()=>{console.log(1123)}
+								},
+								{
+									text:'取消收藏',
+									onClick:()=>{console.log(1123)}
+								}
+							]}
 						>
 							<MallItem { ...props } />
-						</Touch>
+						</SwipeOut>
 					)
 				} }
 			/>
