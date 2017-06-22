@@ -5,7 +5,7 @@ import Touch from '../../components/Touch/index';
 import './index.less';
 
 const btn_w = '140';
-
+const dpr = window.devicePixelRatio;
 class SwipeOut extends Component{
 	static defaultProps = {
 		className:''
@@ -26,15 +26,19 @@ class SwipeOut extends Component{
 		let self = this;
 		const { pageX } = this.state;
 		const { opts , className } = this.props;
-		
+		const max = btn_w*dpr/2*opts.length;
+
 		let child = opts.map((item,i)=>{
-			const { color , text , onClick } = item;
-			let style = {}
-			if(color){
-				style={ background: color };
+			const { background , text , onClick } = item;
+			let style = {
+				width:btn_w/100+'rem'
+			}
+			if(background){
+				style.background = background 
 			}
 			return (
-				<div 
+				<div
+					className={ className ? className : '' }
 					style={ style }
 					key={ i }
 					onClick={ onClick }
@@ -59,7 +63,7 @@ class SwipeOut extends Component{
 					const { direction , movePageX } = data;
 					let x = movePageX;
 					if(direction === 3 || direction === 4){
-						x = movePageX < -150 ? -300 : 0; 
+						x = movePageX < max*-0.5 ? max*-1 : 0; 
 						self.setTransform.call(this.target,x,0.2)
 						self.setState({
 							pageX:x
@@ -69,7 +73,7 @@ class SwipeOut extends Component{
 			>
 				<div className={className+' swipe_out'}>
 					{ this.props.children }
-					<div className="swipe_out_btns right">
+					<div className="swipe_out_btns right" style={{width:max+'px'}}>
 						{ child }
 					</div>
 				</div>

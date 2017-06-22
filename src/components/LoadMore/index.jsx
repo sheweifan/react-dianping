@@ -12,12 +12,12 @@ class MallList extends Component{
 	constructor(props){
 		super(props);
 
-		const dataSource = new ListView.DataSource({
+		this.dataSource = new ListView.DataSource({
 			rowHasChanged: (row1, row2) => row1 !== row2,
 		});
 
 		this.state = {
-			dataSource: dataSource.cloneWithRows({}),
+			dataSource: this.dataSource.cloneWithRows({}),
 			isLoading: true,
 			pageNow:0,
 			pageCount:null,
@@ -93,7 +93,7 @@ class MallList extends Component{
 			pageNow:pageNow
 		});
 
-		let {body,url} = this.props;
+		let { body , url , exclude} = this.props;
 		
 		let obj = Object.assign(body,{
 			pageIndex:pageNow
@@ -103,7 +103,8 @@ class MallList extends Component{
 			.then(data=>{
 				if(data.isOk){
 					var _data = data.data;
-					this.data = this.data.concat(_data)
+					this.data = this.data.concat(_data);
+					this.excludeData(exclude)
 					this.setState({
 						dataSource:this.state.dataSource.cloneWithRows(this.data),
 						pageNow:pageNow,
@@ -123,15 +124,12 @@ class MallList extends Component{
 		this.getData();
 	}
 	componentDidUpdate(prevProps){
-        let { body , url } = this.props;
-        if (body === prevProps.body && url === prevProps.url) {
+        let { body , listUrl } = this.props;
+        if (body === prevProps.body && listUrl === prevProps.listUrl) {
             return
         }
-		const dataSource = new ListView.DataSource({
-			rowHasChanged: (row1, row2) => row1 !== row2,
-		});
 		this.setState({
-			dataSource: dataSource.cloneWithRows({}),
+			dataSource: this.dataSource.cloneWithRows({}),
 			isLoading: true,
 			pageNow:0,
 			pageCount:null,
@@ -139,6 +137,27 @@ class MallList extends Component{
 			this.data = [];
 			this.getData();
 		});
+	}
+	excludeData(exclude){
+		const data = this.data;
+
+		data.forEach((item,i)=>{
+			if( exclude[item._id] ){
+				this.data.splice(i,1);
+			}
+		})
+
+		
+	}
+	componentWillReceiveProps(nextProps){
+		let { exclude } = nextProps;
+		this.excludeData(exclude);
+		this.setState({
+			dataSource: this.dataSource.cloneWithRows(this.data),
+		},()=>{
+			console.log(this.state.dataSource)
+		})
+		
 	}
 
 }
