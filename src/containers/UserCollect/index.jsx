@@ -39,29 +39,32 @@ class UserCollect extends Component{
 		const { exclude } = this.state;
 
 		Toast.loading('正在取消收藏',0);
-
-
-		postData(collectUrl,{
-				_id:_id,
-				userId:userInfo.openId
-			})
-				.then(data=>{
-					const { isOk , changeSuccess } = data;
-					if(isOk){
-						if(changeSuccess){
-							exclude[_id] = true
-							this.setState({
-								exclude: exclude
-							},()=>{
-								Toast.hide();
-								Toast.success('操作成功',1.8);
-							})
-						}
-					}else{
-						Toast.hide();
-						Toast.success('操作失败',1.8);
-					}
+		return new Promise((res,rej)=>{
+			postData(collectUrl,{
+					_id:_id,
+					userId:userInfo.openId
 				})
+					.then(data=>{
+						const { isOk , changeSuccess } = data;
+						if(isOk){
+							if(changeSuccess){
+								exclude[_id] = true
+								this.setState({
+									exclude: exclude
+								},()=>{
+									Toast.hide();
+									Toast.success('操作成功',1.8);
+									res();
+								})
+							}
+						}else{
+							Toast.hide();
+							Toast.success('操作失败',1.8);
+							rej();
+						}
+					})
+		})
+		
 	}
 	render(){
 		const { userInfo } = this.props;
