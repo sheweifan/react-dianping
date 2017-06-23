@@ -1,5 +1,5 @@
 import React,{ Component , PropTypes } from 'react';
-
+import { Toast } from 'antd-mobile';
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/index';
@@ -37,7 +37,10 @@ class UserCollect extends Component{
 	cancelCollect(_id){
 		const { userInfo } = this.props;
 		const { exclude } = this.state;
-		// console.log(exclude)
+
+		Toast.loading('正在取消收藏',0);
+
+
 		postData(collectUrl,{
 				_id:_id,
 				userId:userInfo.openId
@@ -50,9 +53,13 @@ class UserCollect extends Component{
 							this.setState({
 								exclude: exclude
 							},()=>{
-								// console.log(this.state.exclude);
+								Toast.hide();
+								Toast.success('操作成功',1.8);
 							})
 						}
+					}else{
+						Toast.hide();
+						Toast.success('操作失败',1.8);
 					}
 				})
 	}
@@ -88,9 +95,7 @@ class UserCollect extends Component{
 		)
 	}
 
-	shouldComponentUpdate(nextProps,nextState){
-		return true
-	}
+
 }
 
 

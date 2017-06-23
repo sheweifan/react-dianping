@@ -48,7 +48,6 @@ class SwipeOut extends Component{
 				</div>
 			)
 		});
-
 		return (
 			<Touch
 				pageX={ pageX }
@@ -62,6 +61,7 @@ class SwipeOut extends Component{
 				touchEnd={function(data){
 					const { direction , movePageX } = data;
 					let x = movePageX;
+					self.target = this.target;
 					if(direction === 3 || direction === 4){
 						x = movePageX < max*-0.5 ? max*-1 : 0; 
 						self.setTransform.call(this.target,x,0.2)
@@ -79,6 +79,22 @@ class SwipeOut extends Component{
 				</div>
 			</Touch>
 		)
+	}
+	componentWillUpdate(prevProps,prevState){
+		const { pageX } = this.state;
+		if(pageX !==0){
+			this.setState({
+				pageX:0
+			});
+			this.setTransform.call(this.target,0,0)
+		}
+	}
+	shouldComponentUpdate(nextProps, nextState){
+		if(this.state.pageX !== nextState.pageX){
+			return false;
+		}
+
+		return true
 	}
 }
 
