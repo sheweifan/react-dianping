@@ -41,7 +41,14 @@ class SwipeOut extends Component{
 					className={ className ? className : '' }
 					style={ style }
 					key={ i }
-					onClick={ onClick }
+					onClick={ ()=>{ 
+						onClick().then(()=>{
+							self.setState({
+								pageX:0
+							});
+							self.setTransform.call(self.target,0,0);
+						});
+					}}
 					className={ `swipe_out_btn`}
 				>
 					{ text }
@@ -80,22 +87,19 @@ class SwipeOut extends Component{
 			</Touch>
 		)
 	}
-	componentWillUpdate(prevProps,prevState){
-		const { pageX } = this.state;
-		if(pageX !==0){
-			this.setState({
-				pageX:0
-			});
-			this.setTransform.call(this.target,0,0)
-		}
-	}
-	shouldComponentUpdate(nextProps, nextState){
-		if(this.state.pageX !== nextState.pageX){
-			return false;
-		}
+	// componentWillUpdate(prevProps,prevState){
+	// 	const { pageX } = this.state;
+	// 	if(pageX !==0){
+			
+	// 	}
+	// }
+	// shouldComponentUpdate(nextProps, nextState){
+	// 	if(this.state.pageX !== nextState.pageX){
+	// 		return false;
+	// 	}
 
-		return true
-	}
+	// 	return true
+	// }
 }
 
 

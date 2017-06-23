@@ -75,8 +75,8 @@ class Touch extends Component{
 
 		const direction = getDirection( startPontX,startPontY,point.pageX,point.pageY);
 
-		touching && touching(this.movePageX,this.movePageY);
-		touching && touching.call(this,{
+		// touching && touching(this.movePageX,this.movePageY);
+		const stop = touching && touching.call(this,{
 			direction,
 			directionInfo:directionInfo[direction],
 			startPageX,
@@ -84,6 +84,9 @@ class Touch extends Component{
 			movePageX:this.movePageX,
 			movePageY:this.movePageY,
 		});
+		if(stop){
+			e.preventDefault();
+		}
 	}
 	_TouchEnd(e){
 		// 记录结束
