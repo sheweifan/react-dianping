@@ -1,4 +1,4 @@
-import React,{ Component , PropTypes } from 'react'
+import React,{ Component , PropTypes } from 'react';
 
 import { MallListUrl } from '../../config/index';
 import SearchHeader from '../../components/SearchHeader/index';
@@ -16,15 +16,14 @@ class Search extends Component{
 		const {routeParams,location} = this.props;
 
 		const param = routeParams;
-		const keyword = param.keyword
-		const category = param.category
+		const keyword = param.keyword;
+		const category = param.category;
 
 		const info = location.state?location.state.info : category;
 		const headerInfo = keyword?`搜索"${keyword}"的结果` : `分类"${info}"`;
-		const url = MallListUrl
-		let obj = {}
+		const url = MallListUrl;
+		let obj = {};
 
-		// keyword,category
 		if(keyword){
 			obj['keyword'] = keyword;
 		}
@@ -43,9 +42,8 @@ class Search extends Component{
 				
 				<SearchHeader defaultValue={ param.keyword } enterChange={(e)=> {this.context.router.push(`/search/all/${e}`)}} />
 			</div>
-		)
+		);
 	}
-
-}
+};
 
 export default Search;

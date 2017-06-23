@@ -1,6 +1,7 @@
 import React,{ Component , PropTypes } from 'react';
 import { ActivityIndicator } from 'antd-mobile';
 
+
 import  './index.less';
 
 let LoadingWrap = (props) => (

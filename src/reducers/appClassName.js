@@ -1,4 +1,4 @@
-import { APPCLASSNAME_UPDATE,update } from '../actions/appClassName';
+import { APPCLASSNAME_UPDATE } from '../actions/appClassName';
 
 
 export default function appClassName(state='has_head',action){

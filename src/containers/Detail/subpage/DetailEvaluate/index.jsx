@@ -30,7 +30,7 @@ class DetailEvaluate extends Component{
 						<Item
 							arrow="horizontal"
 							extra="查看全部"
-							onClick={()=>router.push(`evaluate/${detailId}`)}
+							onClick={()=>router.push(`evaluateList/${detailId}`)}
 						>
 							网上点评（
 								{

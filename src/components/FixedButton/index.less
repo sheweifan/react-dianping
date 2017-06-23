@@ -1,0 +1,49 @@
+@h:100px;
+.fixed_buttons{
+	background: #fff;
+	position: fixed;
+	bottom:0;
+	font-size: 0;
+	line-height: 0;
+	height: @h;
+	width: 100%;
+	border-top:1PX solid #e5e5e5;
+}
+
+.fixed_buttons_brank{
+	height: @h;
+}
+
+.fixed_buttons_items{
+	display: inline-block;
+	vertical-align: top;
+	text-align: center;
+	color:#333;
+	line-height: @h;
+	font-size: 30px;
+	border-right: 1PX solid #e5e5e5;
+	box-sizing: border-box;
+
+
+	&:nth-last-child(1){
+		border-right: 0;
+	}
+
+
+	&.light{
+		color:#fff;
+		background: #108ee9
+	}
+
+
+	&:active{
+		background: #ddd;
+	}
+
+
+	&.disabled{
+		background: #ddd;
+		color:#bbb;
+	}
+
+}

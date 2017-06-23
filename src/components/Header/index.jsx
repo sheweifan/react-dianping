@@ -11,6 +11,11 @@ const header = (props,context) =>  (
 					context.router.goBack();
 				}
 			}}
+			rightContent={
+				props.rightContent
+				? props.rightContent
+				: null
+			}
 		>
 			{
 				props.title
@@ -27,6 +32,7 @@ header.contextTypes = {
 header.PropTypes = {
     title: PropTypes.string.isRequired,
     backTo: PropTypes.string,
+    rightContent: PropTypes.element
 };
 
 

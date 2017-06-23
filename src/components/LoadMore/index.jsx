@@ -5,6 +5,7 @@ import ListHeader from '../ListHeader/index'
 
 import { listPageTotal  } from '../../config/index';
 import fetchData from '../../until/fetchData';
+import shallowEqual from '../../until/shallowEqual';
 
 import  './index.less';
 
@@ -93,17 +94,17 @@ class MallList extends Component{
 			pageNow:pageNow
 		});
 
-		let {body,url} = this.props;
-		
-		let obj = Object.assign(body,{
-			pageIndex:pageNow
-		});
+		const { body , url , exclude} = this.props;
 
-		fetchData(url,obj)
+		fetchData(url,{
+			...body,
+			pageIndex:pageNow
+		})
 			.then(data=>{
 				if(data.isOk){
 					var _data = data.data;
-					this.data = this.data.concat(_data)
+					this.data = this.data.concat(_data);
+					this.excludeData(exclude)
 					this.setState({
 						dataSource:this.state.dataSource.cloneWithRows(this.data),
 						pageNow:pageNow,
@@ -123,13 +124,14 @@ class MallList extends Component{
 		this.getData();
 	}
 	componentDidUpdate(prevProps){
-        let { body , url } = this.props;
-        if (body === prevProps.body && url === prevProps.url) {
+        let { body , listUrl } = this.props;
+        if ( shallowEqual(body,prevProps.body) && listUrl === prevProps.listUrl) {
             return
         }
-		const dataSource = new ListView.DataSource({
+        const dataSource = new ListView.DataSource({
 			rowHasChanged: (row1, row2) => row1 !== row2,
 		});
+
 		this.setState({
 			dataSource: dataSource.cloneWithRows({}),
 			isLoading: true,
@@ -139,6 +141,29 @@ class MallList extends Component{
 			this.data = [];
 			this.getData();
 		});
+	}
+	excludeData(exclude){
+		const data = this.data;
+
+		if(typeof exclude === 'undefined') return;
+		data.forEach((item,i)=>{
+			if( exclude[item._id] ){
+				this.data.splice(i,1);
+			}
+		});
+		
+	}
+	componentWillReceiveProps(nextProps){
+		let { exclude } = nextProps;
+		this.excludeData(exclude);
+		const dataSource = new ListView.DataSource({
+			rowHasChanged: (row1, row2) => row1 !== row2,
+		});
+
+		this.setState({
+			dataSource: dataSource.cloneWithRows(this.data),
+		})
+		
 	}
 
 }

@@ -37,6 +37,7 @@ img{
 
 body{
   background: #e8e8e8;
+  overflow-x: hidden;
 }
 
 .header_contain {

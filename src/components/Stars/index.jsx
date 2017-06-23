@@ -9,7 +9,6 @@ let Stars = (props)=>{
   const { count , className } = props;
   let stats = ['b','i','t','c','h'].map((item,i)=>{
       return <Icon className={ i+1<=count?'star_item active':'star_item' } key={i} type={icon_star} />
-
   });
   return (
     <span className={className?className+' star_list':'star_list'}>
