@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 import Header from '../../components/Header/index';
 import UserTop from './subpage/UserTop/index'
 
+import Login from '../../HOC/Login';
+
 import { updateUserInfo } from '../../actions/userinfo';
 import { removeItem } from '../../until/localStorage';
 
@@ -24,10 +26,8 @@ let mapDispatchToProps = (dispatch)=>{
     }
 };
 
-@connect(
-    mapStateToProps,
-    mapDispatchToProps
-)
+@connect(mapStateToProps,mapDispatchToProps)
+@Login
 class User extends Component{
     static contextTypes = {
         router: PropTypes.object
@@ -69,13 +69,6 @@ class User extends Component{
                 <Header title="个人中心" />
             </div>
         )
-    }
-    componentDidMount(){
-        let { userInfo,updateUserInfo } = this.props;
-        let { router } = this.context;
-        if(!userInfo || Object.keys(userInfo).length === 0){
-            router.replace('/login');
-        }
     }
 }
 

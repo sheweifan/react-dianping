@@ -7,6 +7,8 @@ import MallItem from '../../components/MallItem/index';
 import MallList from '../../components/MallList/index';
 import SwipeOut from '../../components/SwipeOut/index';
 
+import Login from '../../HOC/Login';
+
 import { userCollectUrl , collectUrl } from '../../config/index';
 import postData from '../../until/postData';
 
@@ -22,12 +24,10 @@ let mapDispatchToProps = (dispatch)=>{
     return {}
 };
 
-
-@connect(
-    mapStateToProps,
-    mapDispatchToProps
-)
+@connect(mapStateToProps,mapDispatchToProps)
+@Login
 class UserCollect extends Component{
+	
 	constructor(props){
 		super(props);
 		this.state={
