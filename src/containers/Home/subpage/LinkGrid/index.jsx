@@ -3,58 +3,58 @@ import { Grid } from 'antd-mobile';
 
 import './index.less';
 
-const url = 'http://images2015.cnblogs.com/blog/138012/201610/';
+const url = 'http://os6x9ewy1.bkt.clouddn.com/';
 
 let data = [
 	{
-		icon: url + '138012-20161022224203170-1528315005.png',
-		text:'景点',
-		category:'jingdian'
+		icon: url + 'icon_1.png',
+		text:'电影',
+		category:'dianying'
 	},
 	{
-		icon: url + '138012-20161022224309185-1519181081.png',
-		text:'KTV',
-		category:'KTV'
+		icon: url + 'icon_2.png',
+		text:'度假出行',
+		category:'dujiachuxing'
 	},
 	{
-		icon: url + '138012-20161022224150045-30962603.png',
-		text:'购物',
-		category:'gouwu'
+		icon: url + 'icon_3.png',
+		text:'火锅',
+		category:'huoguo'
 	},
 	{
-		icon: url + '138012-20161022224237513-176380794.png',
-		text:'生活服务',
-		category:'shenghuofuwu'
+		icon: url + 'icon_4.png',
+		text:'酒店',
+		category:'jiudian'
 	},
 	{
-		icon: url + '138012-20161022224256732-145714491.png',
-		text:'健身运动',
-		category:'jianshenyundong'
+		icon: url + 'icon_5.png',
+		text:'丽人',
+		category:'liren'
 	},
 	{
-		icon: url + '138012-20161022224222123-643915682.png',
-		text:'美发',
-		category:'meifa'
+		icon: url + 'icon_6.png',
+		text:'美食',
+		category:'meishi'
 	},
 	{
-		icon: url + '138012-20161022224229451-475201730.png',
-		text:'亲子',
-		category:'qinzi'
+		icon: url + 'icon_7.png',
+		text:'外卖',
+		category:'waimai'
 	},
 	{
-		icon: url + '138012-20161022224244545-1583700011.png',
-		text:'小吃快餐',
-		category:'xiaochikuaican'
+		icon: url + 'icon_8.png',
+		text:'休闲娱乐',
+		category:'xiuxianyule'
 	},
 	{
-		icon: url + '138012-20161022224244545-1583700011.png',
-		text:'自助餐',
-		category:'zizhucan'
+		icon: url + 'icon_9.png',
+		text:'周边游',
+		category:'zhoubianyou'
 	},
 	{
-		icon: url + '138012-20161022224210732-490953965.png',
-		text:'酒吧',
-		category:'jiuba'
+		icon: url + 'icon_10.png',
+		text:'足疗按摩',
+		category:'zuliaoanmo'
 	}
 
 ];
