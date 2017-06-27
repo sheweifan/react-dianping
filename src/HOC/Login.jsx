@@ -1,6 +1,5 @@
 import React,{ Component , PropTypes } from 'react';
 import { Toast } from 'antd-mobile';
-const alert = Modal.alert;
 
 const Login = ( WrappedComponent ) => {
 	return class extends WrappedComponent{
