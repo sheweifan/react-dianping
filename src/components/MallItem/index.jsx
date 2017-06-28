@@ -1,6 +1,8 @@
 import React,{ Component , PropTypes } from 'react';
-import { WingBlank,WhiteSpace } from 'antd-mobile';
+import { WingBlank , WhiteSpace } from 'antd-mobile';
 import { Link } from 'react-router';
+
+import LazyImg from '../LazyImgs';
 
 import './index.less';
 let MallItem = (props)=>{
@@ -10,9 +12,11 @@ let MallItem = (props)=>{
 			<div className="mall_item_inner">
 				<WhiteSpace size="sm"/>
 				<WingBlank size="ms" className="clearfix">
-					
 					<div className="mall_item_img">
-						<img src={img} />
+						{
+							// <img src={img} />
+						}
+						<LazyImg src={img} />
 					</div>
 					<div className="mall_item_info">
 						<p className="mall_item_title">
