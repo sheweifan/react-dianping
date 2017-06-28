@@ -1,5 +1,5 @@
 import React,{ Component , PropTypes } from 'react';
-import { WingBlank,WhiteSpace } from 'antd-mobile';
+import { WingBlank , WhiteSpace } from 'antd-mobile';
 import { Link } from 'react-router';
 
 import LazyImg from '../LazyImgs';
@@ -9,28 +9,29 @@ let MallItem = (props)=>{
 	let {_id,describe,postion,sales,title,img,price,touchs} = props;
 	return (
 		<Link to={`/detail/${_id}`}  className="mall_item">
-			<LazyImg>
-				<div className="mall_item_inner">
-					<WhiteSpace size="sm"/>
-					<WingBlank size="ms" className="clearfix">
-						<div className="mall_item_img">
-							<img src={img} />
-						</div>
-						<div className="mall_item_info">
-							<p className="mall_item_title">
-								<span className="postion">{postion}m</span>
-								<span className="title">{title}</span>
-							</p>
-							<p className="mall_item_describe">{describe}</p>
-							<p className="mall_item_pirce">
-								<span className="sales">已售{sales.toString()}</span>
-								<span className="price">¥{price.toString()}</span>
-							</p>
-						</div>
-					</WingBlank>
-					<WhiteSpace size="sm"/>
-				</div>
-			</LazyImg>
+			<div className="mall_item_inner">
+				<WhiteSpace size="sm"/>
+				<WingBlank size="ms" className="clearfix">
+					<div className="mall_item_img">
+						{
+							// <img src={img} />
+						}
+						<LazyImg src={img} />
+					</div>
+					<div className="mall_item_info">
+						<p className="mall_item_title">
+							<span className="postion">{postion}m</span>
+							<span className="title">{title}</span>
+						</p>
+						<p className="mall_item_describe">{describe}</p>
+						<p className="mall_item_pirce">
+							<span className="sales">已售{sales.toString()}</span>
+							<span className="price">¥{price.toString()}</span>
+						</p>
+					</div>
+				</WingBlank>
+				<WhiteSpace size="sm"/>
+			</div>
 		</Link>
 	)
 }
