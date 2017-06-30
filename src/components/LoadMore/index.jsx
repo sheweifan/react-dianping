@@ -9,16 +9,20 @@ import shallowEqual from '../../until/shallowEqual';
 
 import  './index.less';
 
+const getDataSouce = () =>{
+	return new ListView.DataSource({
+		rowHasChanged: (row1, row2) => row1 !== row2,
+	});
+}
+
 class MallList extends Component{
 	constructor(props){
 		super(props);
 
-		const dataSource = new ListView.DataSource({
-			rowHasChanged: (row1, row2) => row1 !== row2,
-		});
+		
 
 		this.state = {
-			dataSource: dataSource.cloneWithRows({}),
+			dataSource: getDataSouce().cloneWithRows({}),
 			isLoading: true,
 			pageNow:0,
 			pageCount:null,
@@ -128,12 +132,9 @@ class MallList extends Component{
         if ( shallowEqual(body,prevProps.body) && listUrl === prevProps.listUrl) {
             return
         }
-        const dataSource = new ListView.DataSource({
-			rowHasChanged: (row1, row2) => row1 !== row2,
-		});
 
 		this.setState({
-			dataSource: dataSource.cloneWithRows({}),
+			dataSource: getDataSouce().cloneWithRows({}),
 			isLoading: true,
 			pageNow:0,
 			pageCount:null,
@@ -156,12 +157,9 @@ class MallList extends Component{
 	componentWillReceiveProps(nextProps){
 		let { exclude } = nextProps;
 		this.excludeData(exclude);
-		const dataSource = new ListView.DataSource({
-			rowHasChanged: (row1, row2) => row1 !== row2,
-		});
 
 		this.setState({
-			dataSource: dataSource.cloneWithRows(this.data),
+			dataSource: getDataSouce().cloneWithRows(this.data),
 		})
 		
 	}
