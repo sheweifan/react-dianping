@@ -19,11 +19,20 @@ const FixedButton = (props) => {
 							<a href="javascript:" 
 								key={ i }
 								disabled={ item.disabled }
-								onClick={ item.disabled ? ()=>{} : item.onClick }
+								onClick={
+									item.disabled 
+									? item.disabledClick || ( ()=>{} )
+									: item.onClick
+								}
 								className={ cn } 
 								style={{width: 100 / props.options.length + '%' }}
 							>
-								{ item.name }
+								{ 
+									item.disabled && item.disabledName
+									? item.disabledName
+									: item.name 
+
+								}
 							</a>
 						)
 					})
