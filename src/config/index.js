@@ -27,6 +27,9 @@ export const evaluateUrl = fetchUrl+'api/evaluate';
 // 登陆
 export const loginUrl = fetchUrl+'api/login';
 
+// 注册
+export const registeUrl = fetchUrl+'api/register';
+
 // 改变收藏状态
 export const collectUrl = fetchUrl+'api/collect';
 
