@@ -4,7 +4,14 @@ import { ActivityIndicator } from 'antd-mobile';
 
 import './index.less';
 
-let winH =  window.innerHeight || document.documentElement.clientHeight
+const getWinH = ()=>{ return window.innerHeight || document.documentElement.clientHeight; }
+let winH = getWinH();
+
+// 屏幕旋转。 待完善
+window.addEventListener("orientationchange", function() {
+	setTimeout(()=>{winH=getWinH();}
+}, false);
+
 const isVisible = (dom) => {
 	const _dom = findDOMNode(dom);
 	let { top } = _dom.getBoundingClientRect();
