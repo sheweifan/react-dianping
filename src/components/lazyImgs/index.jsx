@@ -8,8 +8,10 @@ const getWinH = ()=>{ return window.innerHeight || document.documentElement.clie
 let winH = getWinH();
 
 // 屏幕旋转。 待完善
-window.addEventListener("orientationchange", function() {
-	setTimeout(()=>{winH=getWinH();}
+window.addEventListener('orientationchange',()=>{
+	setTimeout(()=>{
+		winH=getWinH();
+	},200);
 }, false);
 
 const isVisible = (dom) => {
