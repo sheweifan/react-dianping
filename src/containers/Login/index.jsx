@@ -22,8 +22,9 @@ class Login extends Component {
     
     constructor(props,context) {
         super(props,context);
+        var location_state = props.location.state || {};
         this.state={
-            phonenum: props.location.state.phonenum || '',
+            phonenum:  location_state.phonenum ? location_state.phonenum : '',
             phoneError:false,
             password:'',
             passwordDisplay:false
@@ -75,7 +76,8 @@ class Login extends Component {
                         setItem('userInfo',JSON.stringify(data.data));
                         updateUserInfo(data.data);
                         Toast.success('登陆成功',2,()=>{
-                            router.goBack();
+                            // router.goBack();
+                            console.log(this.props,this.context)
                             router.push('/');
                         })
                     }else{
