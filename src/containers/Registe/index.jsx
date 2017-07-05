@@ -14,7 +14,7 @@ import icon_password_show from '../../static/icons/password_show.svg';
 
 import './index.less';
 
-const TIMEOUT = 60;
+const TIMEOUT = 10;
 
 class Registe extends Component {
     static contextTypes = {
@@ -67,26 +67,37 @@ class Registe extends Component {
                 if(data.isOk){
                     Toast.info('发送成功',2);
 
-                    setTimeout(function(){
+                    // setTimeout(function(){
                         alert('模拟发送短信：您的验证码是'+data.verifyCode);
-                    },2000);
+                    // },2000);
                     
                     this.setState({
                         verifyCodeTimeout:TIMEOUT
                     })
                     // 倒计时
                     this.timer = setInterval(function(){
-
+                        let now = this.state.verifyCodeTimeout -1 ;
+                        if(now === -1){
+                            return;
+                        }
+                        this.setState({
+                            verifyCodeTimeout: now
+                        })
                     }.bind(this),1000);
                 }
             })
     }
     handleSubmit(){
-        let { phonenum , password , passwordRepeat } = this.state;
+        let { phonenum , password , passwordRepeat , verifyCode } = this.state;
         let {router} = this.context;
         let {updateUserInfo} = this.props;
         if(phonenum.replace(/\s/g, '').length < 11 ){
             Toast.info('请输入正确的手机号码',2);       
+            return;
+        }
+
+        if(verifyCode.length < 4 ){
+            Toast.info('验证码错误',2);       
             return;
         }
 
@@ -100,7 +111,7 @@ class Registe extends Component {
             return;
         }
         Toast.loading('提交中',0)
-        postData(registerUrl,{
+        postData(registeUrl,{
                 phonenum,password
             })
             .then(data=>{
@@ -143,18 +154,23 @@ class Registe extends Component {
                         手机号码
                     </InputItem>
                     <InputItem
+                        maxLength="4"
                         className="verify_code_inputitem"
                         placeholder="请输入验证码"  
                         type="number" 
                         onChange={(e)=>{this.handleChange(e,'verifyCode');}} 
                         value={ verifyCode }
                         extra={ 
-                            <Button type="primary" size="small" onClick={this.getVerifyCode.bind(this)}>
+                            <Button 
+                                type="primary"
+                                size="small"
+                                onClick={this.getVerifyCode.bind(this)}
+                                disabled={verifyCodeTimeout !== 0}
+                            >
                                 {   
                                     verifyCodeTimeout === 0
                                     ? '获取验证码'
                                     : verifyCodeTimeout+'s'
-                                    
                                 }
                             </Button>
                         }

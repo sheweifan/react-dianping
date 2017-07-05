@@ -52,8 +52,8 @@ class Login extends Component {
     }
     handleSubmit(){
         let { phonenum , password } = this.state;
-        let {router} = this.context;
-        let {updateUserInfo} = this.props;
+        let { router } = this.context;
+        let { updateUserInfo } = this.props;
         console.log(router)
         if(phonenum.replace(/\s/g, '').length < 11 ){
             Toast.info('请输入正确的手机号码',2);       
@@ -89,7 +89,10 @@ class Login extends Component {
             })
     }
     render() {
-        let {phonenum,phoneError,passwordDisplay,password} = this.state;
+        let {phonenum,
+            phoneError,
+            passwordDisplay,
+            password} = this.state;
 
         return (
         	<div>
