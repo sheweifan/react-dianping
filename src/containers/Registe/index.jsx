@@ -1,18 +1,20 @@
 import React,{ Component , PropTypes } from 'react';
 import { connect } from 'react-redux' 
 import { Link } from 'react-router'
-import { Button ,InputItem,WingBlank ,WhiteSpace ,Toast,Icon,List} from 'antd-mobile';
+import { Button , InputItem , WingBlank , WhiteSpace , Toast , Icon , List } from 'antd-mobile';
 
 import { appClassNameupdateUpdate } from '../../actions/appClassName';
 import { updateUserInfo } from '../../actions/userinfo';
 
-import { registeUrl } from '../../config/index';
+import { registeUrl , getVerifyCode } from '../../config/index';
 import postData from '../../until/postData';
 
 import icon_password_hide from '../../static/icons/password_hide.svg';
 import icon_password_show from '../../static/icons/password_show.svg';
 
 import './index.less';
+
+const TIMEOUT = 60;
 
 class Registe extends Component {
     static contextTypes = {
@@ -23,10 +25,12 @@ class Registe extends Component {
         super(props);
         this.state={
             phonenum: '',
-            phoneError:false,
+            phoneError: false,
             password:'',
             passwordRepeat:'',
-            passwordDisplay:true
+            passwordDisplay:true,
+            verifyCode:'',
+            verifyCodeTimeout:0
         }
     }
     componentWillMount(){
@@ -48,6 +52,34 @@ class Registe extends Component {
                 phoneError:false
             });
         }
+    }
+    getVerifyCode(){
+        let { phoneError , phonenum } = this.state;
+        if(phoneError || phonenum === ''){
+            Toast.info('请输入正确的手机号码',2);
+            return;
+        }
+        postData(getVerifyCode,{
+                phonenum
+            })
+            .then(data=>{
+                // 模拟发送短信
+                if(data.isOk){
+                    Toast.info('发送成功',2);
+
+                    setTimeout(function(){
+                        alert('模拟发送短信：您的验证码是'+data.verifyCode);
+                    },2000);
+                    
+                    this.setState({
+                        verifyCodeTimeout:TIMEOUT
+                    })
+                    // 倒计时
+                    this.timer = setInterval(function(){
+
+                    }.bind(this),1000);
+                }
+            })
     }
     handleSubmit(){
         let { phonenum , password , passwordRepeat } = this.state;
@@ -92,8 +124,10 @@ class Registe extends Component {
             phoneError,
             passwordDisplay,
             password,
-            passwordRepeat} = this.state;
-
+            passwordRepeat,
+            verifyCode,
+            verifyCodeTimeout} = this.state;
+      
         return (
         	<div>
                 <WhiteSpace size="md" />
@@ -107,6 +141,25 @@ class Registe extends Component {
                         onErrorClick={()=>Toast.info('请输入正确的手机号码',2)}
                     >
                         手机号码
+                    </InputItem>
+                    <InputItem
+                        className="verify_code_inputitem"
+                        placeholder="请输入验证码"  
+                        type="number" 
+                        onChange={(e)=>{this.handleChange(e,'verifyCode');}} 
+                        value={ verifyCode }
+                        extra={ 
+                            <Button type="primary" size="small" onClick={this.getVerifyCode.bind(this)}>
+                                {   
+                                    verifyCodeTimeout === 0
+                                    ? '获取验证码'
+                                    : verifyCodeTimeout+'s'
+                                    
+                                }
+                            </Button>
+                        }
+                    >
+                        验证码
                     </InputItem>
                     <InputItem
                         placeholder="请设置密码" 
@@ -145,6 +198,9 @@ class Registe extends Component {
     componentWillUnmount(){
         var { resetAppClassName } = this.props;
         resetAppClassName();
+        if(this.timer){
+            clearInterval(this.timer);
+        }
     }
 }
 

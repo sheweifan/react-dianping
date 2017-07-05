@@ -122,7 +122,7 @@ class Login extends Component {
                     <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                         登陆
                     </Button>
-                    <Link className="goRegister" to="/register">还没账号？去注册一个吧</Link>
+                    <Link className="goRegister" to="/registe">还没账号？去注册一个吧</Link>
                 </WingBlank>
                 <WhiteSpace size="md" />   
             </div>

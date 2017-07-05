@@ -6,14 +6,14 @@ export const indexBannerSize = {
     height:280,
 };
 
+// 分页每页条数 datasouce
+export const listPageTotal = 20;
+
 // 首页轮播
 export const indexbannerUrl = fetchUrl+'api/index/banner';
 
 // 商品
 export const mallListUrl = fetchUrl+'api/mallList';
-
-// 分页每页条数 datasouce
-export const listPageTotal = 20;
 
 // 商家详情
 export const detailMesUrl = fetchUrl+'api/detailMes';
@@ -35,3 +35,6 @@ export const collectUrl = fetchUrl+'api/collect';
 
 // 我的收藏
 export const userCollectUrl = fetchUrl+'api/mallList?collect=1';
+
+// 获取手机验证码
+export const getVerifyCode = fetchUrl+'api/getVerifyCode';
