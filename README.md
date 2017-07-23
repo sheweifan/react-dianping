@@ -14,7 +14,7 @@
     * 我的收藏
 
 ## 快速构建
-#### 我自己的环境是node-v4.4.4 npm-v4.1.2 webpack-1.x 
+#### 我自己的环境是node-v4.4.4 npm-v4.1.2 webpack-3.x 
 
 	mkdir react-dianping
 	git clone https://github.com/sheweifan/react-dianping.git
@@ -27,4 +27,4 @@
 * 所有组件添加`PropTypes` √
 * 列表页面数据缓存
 * 公共组件单元测试
-* webpack升级到2.x
+* webpack升级到2.x √

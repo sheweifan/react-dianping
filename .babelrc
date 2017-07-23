@@ -1,0 +1,13 @@
+{
+  plugins: [
+      ['transform-runtime', { polyfill: false }],
+      ["import", {
+              libraryName: "antd-mobile",
+              style: true, 
+        }],
+      // "transform-decorators"
+      "transform-decorators-legacy"
+  ],
+  presets: ['es2015', 'stage-0', 'react'],
+  comments: false
+}

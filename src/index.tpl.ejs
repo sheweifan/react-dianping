@@ -27,6 +27,10 @@
   <script src="/dist/shared.js"></script> 
   <script src="/dist/vendor.js"></script>
   <script src="/dist/index.js"></script>-->
+  <% if( !htmlWebpackPlugin.options.prod ){ %>
+    <!-- 开发环境才有 -->
+    <script type="text/javascript" src="/vendor.js"></script>
+  <% } %>
   
 </body>
 <script>
