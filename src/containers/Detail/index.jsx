@@ -69,9 +69,13 @@ class Detail extends Component {
 					options={[
 						{
 							name:'我也要点评',
+							disabledName:'登陆后即可点评',
 							light:true,
 							onClick:()=>{
 								router.push('evaluate/'+detailId)
+							},
+							disabledClick:()=>{
+								router.push('login')
 							},
 							disabled: Object.keys(userInfo).length === 0
 						}

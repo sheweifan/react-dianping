@@ -22,11 +22,11 @@ class Login extends Component {
     
     constructor(props,context) {
         super(props,context);
-
+        var location_state = props.location.state || {};
         this.state={
-            phonenum:'15521036763',
+            phonenum:  location_state.phonenum ? location_state.phonenum : '',
             phoneError:false,
-            password:'123456',
+            password:'',
             passwordDisplay:false
         }
     }
@@ -52,8 +52,8 @@ class Login extends Component {
     }
     handleSubmit(){
         let { phonenum , password } = this.state;
-        let {router} = this.context;
-        let {updateUserInfo} = this.props;
+        let { router } = this.context;
+        let { updateUserInfo } = this.props;
         console.log(router)
         if(phonenum.replace(/\s/g, '').length < 11 ){
             Toast.info('请输入正确的手机号码',2);       
@@ -76,7 +76,9 @@ class Login extends Component {
                         setItem('userInfo',JSON.stringify(data.data));
                         updateUserInfo(data.data);
                         Toast.success('登陆成功',2,()=>{
-                           router.goBack();
+                            // router.goBack();
+                            console.log(this.props,this.context)
+                            router.push('/');
                         })
                     }else{
                         Toast.fail('密码错误',2)
@@ -87,7 +89,10 @@ class Login extends Component {
             })
     }
     render() {
-        let {phonenum,phoneError,passwordDisplay,password} = this.state;
+        let {phonenum,
+            phoneError,
+            passwordDisplay,
+            password} = this.state;
 
         return (
         	<div>
@@ -104,7 +109,7 @@ class Login extends Component {
                         手机号码
                     </InputItem>
                     <InputItem
-                        placeholder="请输入手机密码" 
+                        placeholder="请输入密码" 
                         type={ passwordDisplay? 'text':'password' }
                         onChange={(e)=>{this.handleChange(e,'password')}}
                         value={password}
@@ -120,7 +125,7 @@ class Login extends Component {
                     <Button type="primary" onClick={this.handleSubmit.bind(this)}>
                         登陆
                     </Button>
-                    <Link className="goRegister">还没账号？去注册一个吧</Link>
+                    <Link className="goRegister" to="/registe">还没账号？去注册一个吧</Link>
                 </WingBlank>
                 <WhiteSpace size="md" />   
             </div>
