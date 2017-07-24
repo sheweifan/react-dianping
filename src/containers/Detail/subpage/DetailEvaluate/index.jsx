@@ -9,6 +9,9 @@ import { evaluateListUrl } from '../../../../config/index';
 import fetchData from '../../../../until/fetchData';
 
 class DetailEvaluate extends Component{
+	static contextTypes = {
+		router: PropTypes.object
+	}
 	constructor(props,context){
 		super(props,context);
 		// console.log(props)
@@ -66,10 +69,6 @@ class DetailEvaluate extends Component{
 		})
 	}
 
-}
-
-DetailEvaluate.contextTypes = {
-    router: PropTypes.object
 }
 
 export default DetailEvaluate;
