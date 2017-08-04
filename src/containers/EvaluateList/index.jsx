@@ -1,4 +1,4 @@
-import React,{ Component } from 'react';
+import React, { Component } from 'react';
 
 import Header from '../../components/Header/index';
 import EvaluateList from '../../components/EvaluateList/index';
@@ -19,24 +19,24 @@ import EvaluateList from '../../components/EvaluateList/index';
 // 	return false;
 // }
 
-class Evaluate extends Component{
-	constructor(props){
-		super(props);
-	}
-	render(){
-		const id = this.props.routeParams.id;
-		// console.log('id',id)
+class Evaluate extends Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    const id = this.props.routeParams.id;
+    // console.log('id',id)
 	    return (
-			<div>
-				<EvaluateList body={{_id:id}} />
-				<Header title="评价列表"/>
-			</div>
+      <div>
+    <EvaluateList body={{ _id: id }} />
+    <Header title="评价列表" />
+  </div>
 	    );
-	}
-	// TODO fix 路由跳转重复渲染
-	shouldComponentUpdate(nextProps, nextState){
-		return nextProps.routeParams.id !== this.props.routeParams.id;
-	}
+  }
+  // TODO fix 路由跳转重复渲染
+  shouldComponentUpdate(nextProps, nextState) {
+    return nextProps.routeParams.id !== this.props.routeParams.id;
+  }
 }
 
 

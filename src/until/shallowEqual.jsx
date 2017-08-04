@@ -1,25 +1,24 @@
-const shallowEqual = (obj,other) =>{
-	if(obj === other){
-		return true
-	}
+const shallowEqual = (obj, other) => {
+  if (obj === other) {
+    return true;
+  }
 
-	const objkeys = Object.keys(obj);
-	const otherkeys = Object.keys(other);
-	
-	if(objkeys.length !== otherkeys.length){
-		return false;
-	}
+  const objkeys = Object.keys(obj);
+  const otherkeys = Object.keys(other);
 
-	let bool = true;
+  if (objkeys.length !== otherkeys.length) {
+    return false;
+  }
 
-	objkeys.forEach((i)=> {
-		if(obj[i] !== other[i]){
-			bool = false
-		}
-	})
+  let bool = true;
 
-	return bool;
+  objkeys.forEach((i) => {
+    if (obj[i] !== other[i]) {
+      bool = false;
+    }
+  });
 
-}
+  return bool;
+};
 
-export default shallowEqual
+export default shallowEqual;

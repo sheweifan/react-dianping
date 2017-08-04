@@ -1,5 +1,5 @@
-import React,{ Component , PropTypes } from 'react';
-import {connect} from 'react-redux';
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 
 
 import HomeHeader from '../../components/HomeHeader/index';
@@ -8,39 +8,35 @@ import LinkGrid from './subpage/LinkGrid/index';
 import MallList from '../../components/MallList/index';
 import ListHeader from '../../components/ListHeader/index';
 
-let Home = (props, context) =>{
-    let { userInfo } = props;
-    return (
-        <div>
-            <Banner />
-            <LinkGrid />
-            <MallList renderHeader={()=>'猜你喜欢'} body={{category:'guess'}}/>
-            <HomeHeader 
-                enterChange={(e)=> {context.router.push(`/search/all/${encodeURIComponent(e)}`)}}
-                userInfo={userInfo}
-            />
-        </div>
-    )
-}
+const Home = (props, context) => {
+  const { userInfo } = props;
+  return (
+    <div>
+      <Banner />
+      <LinkGrid />
+      <MallList renderHeader={() => '猜你喜欢'} body={{ category: 'guess' }} />
+      <HomeHeader
+        enterChange={(e) => { context.router.push(`/search/all/${encodeURIComponent(e)}`); }}
+        userInfo={userInfo}
+      />
+    </div>
+  );
+};
 
 Home.contextTypes = {
-    router: PropTypes.object
+  router: PropTypes.object,
 };
 
 
-let mapStateToProps = (state)=>{
-    return {
-        userInfo:state.userInfo
-    }
-};
+const mapStateToProps = state => ({
+  userInfo: state.userInfo,
+});
 
-let mapDispatchToProps = (dispatch)=>{
-    return {
-    }
-};
+const mapDispatchToProps = dispatch => ({
+});
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps,
 )(Home);
 

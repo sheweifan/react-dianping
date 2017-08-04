@@ -1,176 +1,167 @@
-import React,{ Component , PropTypes } from 'react';
-import { ListView , ActivityIndicator } from 'antd-mobile';
+import React, { Component, PropTypes } from 'react';
+import { ListView, ActivityIndicator } from 'antd-mobile';
 
-import ListHeader from '../ListHeader/index'
+import ListHeader from '../ListHeader/index';
 
-import { listPageTotal  } from '../../config/index';
+import { listPageTotal } from '../../config/index';
 import fetchData from '../../until/fetchData';
 import shallowEqual from '../../until/shallowEqual';
 
-import  './index.less';
+import './index.less';
 
-const getDataSouce = () =>{
-	return new ListView.DataSource({
-		rowHasChanged: (row1, row2) => row1 !== row2,
-	});
-}
+const getDataSouce = () => new ListView.DataSource({
+  rowHasChanged: (row1, row2) => row1 !== row2,
+});
 
-class MallList extends Component{
-	constructor(props){
-		super(props);
+class MallList extends Component {
+  constructor(props) {
+    super(props);
 
-		
 
-		this.state = {
-			dataSource: getDataSouce().cloneWithRows({}),
-			isLoading: true,
-			pageNow:0,
-			pageCount:null,
-		};
-		
-		this.data = [];
-	}
-	render(){
-		let { dataSource ,pageNow , pageCount ,isLoading } = this.state;
+    this.state = {
+      dataSource: getDataSouce().cloneWithRows({}),
+      isLoading: true,
+      pageNow: 0,
+      pageCount: null,
+    };
 
-		let MallListFooter = ()=> {
-			
-			if(isLoading){
-				return (
-					<ActivityIndicator text="正在加载"  className="loading_tips" />
-				)
-			}
-			
-			if(pageCount === 0){
-				return (
-					<div className="loadend_tips">暂无数据</div>
-				)
-			}
+    this.data = [];
+  }
+  render() {
+    const { dataSource, pageNow, pageCount, isLoading } = this.state;
 
-			if(pageNow !== pageCount){
-				return (
-					<div className="loadend_tips">上拉加载更多</div>
-				)
-			}
+    const MallListFooter = () => {
+      if (isLoading) {
+        return (
+          <ActivityIndicator text="正在加载" className="loading_tips" />
+        );
+      }
 
-			return (
-				<div>
-					<div className="loadend_tips">没有更多了</div>
-				</div>
-			);
-		}
-		return (
-			<div>
+      if (pageCount === 0) {
+        return (
+          <div className="loadend_tips">暂无数据</div>
+        );
+      }
 
-				<ListView
-					className={this.props.className+' loadmore_list'}
-					useBodyScroll
-					dataSource={dataSource}
-					renderRow={this.props.childComponent}
-					onEndReached={this.onEndReached.bind(this)}
-					renderFooter={() => <MallListFooter />}
-					onEndReachedThreshold={0}
-					pageSize={listPageTotal}
-					renderHeader={()=>{
-						if(this.props.renderHeader){
-							return (
-								<ListHeader>
-									{
-										this.props.renderHeader()
-									}
-								</ListHeader>
-							)
-						}else{
-							return null
-						}
-					}
-					}
-				>
-				</ListView>
-			</div>
-		)
-	}
-	getData(){
-		let { pageNow } = this.state;
-		pageNow++
-		this.setState({
-			isLoading:true,
-			pageNow:pageNow
-		});
+      if (pageNow !== pageCount) {
+        return (
+          <div className="loadend_tips">上拉加载更多</div>
+        );
+      }
 
-		const { body , url , exclude} = this.props;
+      return (
+        <div>
+          <div className="loadend_tips">没有更多了</div>
+        </div>
+      );
+    };
+    return (
+      <div>
 
-		fetchData(url,{
-			...body,
-			pageIndex:pageNow
-		})
-			.then(data=>{
-				if(data.isOk){
-					var _data = data.data;
-					this.data = this.data.concat(_data);
-					this.excludeData(exclude)
-					this.setState({
-						dataSource:this.state.dataSource.cloneWithRows(this.data),
-						pageNow:pageNow,
-						isLoading:false,
-						pageCount:data.pageCount
-					})
-				}
-			})
-	}
-	onEndReached(){
-		let { pageNow , isLoading , pageCount } = this.state;
-		if(isLoading || pageNow === pageCount) return;
-		
-		this.getData();
-	}
-	componentDidMount(){
-		this.getData();
-	}
-	componentDidUpdate(prevProps){
-        let { body , listUrl } = this.props;
-        if ( shallowEqual(body,prevProps.body) && listUrl === prevProps.listUrl) {
-            return
+        <ListView
+          className={`${this.props.className} loadmore_list`}
+          useBodyScroll
+          dataSource={dataSource}
+          renderRow={this.props.childComponent}
+          onEndReached={this.onEndReached.bind(this)}
+          renderFooter={() => <MallListFooter />}
+          onEndReachedThreshold={0}
+          pageSize={listPageTotal}
+          renderHeader={() => {
+            if (this.props.renderHeader) {
+              return (
+                <ListHeader>
+                  {
+                    this.props.renderHeader()
+                  }
+                </ListHeader>
+              );
+            }
+            return null;
+          }
+          }
+        />
+      </div>
+    );
+  }
+  getData() {
+    let { pageNow } = this.state;
+    pageNow++;
+    this.setState({
+      isLoading: true,
+      pageNow,
+    });
+
+    const { body, url, exclude } = this.props;
+
+    fetchData(url, {
+      ...body,
+      pageIndex: pageNow,
+    })
+      .then((data) => {
+        if (data.isOk) {
+          const _data = data.data;
+          this.data = this.data.concat(_data);
+          this.excludeData(exclude);
+          this.setState({
+            dataSource: this.state.dataSource.cloneWithRows(this.data),
+            pageNow,
+            isLoading: false,
+            pageCount: data.pageCount,
+          });
         }
+      });
+  }
+  onEndReached() {
+    const { pageNow, isLoading, pageCount } = this.state;
+    if (isLoading || pageNow === pageCount) return;
 
-		this.setState({
-			dataSource: getDataSouce().cloneWithRows({}),
-			isLoading: true,
-			pageNow:0,
-			pageCount:null,
-		},()=>{
-			this.data = [];
-			this.getData();
-		});
-	}
-	excludeData(exclude){
-		const data = this.data;
+    this.getData();
+  }
+  componentDidMount() {
+    this.getData();
+  }
+  componentDidUpdate(prevProps) {
+    const { body, listUrl } = this.props;
+    if (shallowEqual(body, prevProps.body) && listUrl === prevProps.listUrl) {
+      return;
+    }
 
-		if(typeof exclude === 'undefined') return;
-		data.forEach((item,i)=>{
-			if( exclude[item._id] ){
-				this.data.splice(i,1);
-			}
-		});
-		
-	}
-	componentWillReceiveProps(nextProps){
-		let { exclude } = nextProps;
-		this.excludeData(exclude);
+    this.setState({
+      dataSource: getDataSouce().cloneWithRows({}),
+      isLoading: true,
+      pageNow: 0,
+      pageCount: null,
+    }, () => {
+      this.data = [];
+      this.getData();
+    });
+  }
+  excludeData(exclude) {
+    const data = this.data;
 
-		this.setState({
-			dataSource: getDataSouce().cloneWithRows(this.data),
-		})
-		
-	}
+    if (typeof exclude === 'undefined') return;
+    data.forEach((item, i) => {
+      if (exclude[item._id]) {
+        this.data.splice(i, 1);
+      }
+    });
+  }
+  componentWillReceiveProps(nextProps) {
+    const { exclude } = nextProps;
+    this.excludeData(exclude);
 
+    this.setState({
+      dataSource: getDataSouce().cloneWithRows(this.data),
+    });
+  }
 }
 
 MallList.PropTypes = {
-    className: PropTypes.string,
-    body: PropTypes.object.isRequired,
-    url: PropTypes.string.isRequired,
-    childComponent: PropTypes.element
+  className: PropTypes.string,
+  body: PropTypes.object.isRequired,
+  url: PropTypes.string.isRequired,
+  childComponent: PropTypes.element,
 };
 
-export default MallList
+export default MallList;

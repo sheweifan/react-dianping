@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 // class NotFound extends React.Component {
 //     constructor(props, context) {
@@ -11,8 +11,8 @@ import React from 'react'
 //         )
 //     }
 // }
-let NotFound = () => (
-	<h1>404 not found page</h1>
+const NotFound = () => (
+  <h1>404 not found page</h1>
 );
 
 
