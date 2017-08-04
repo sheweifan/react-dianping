@@ -8,7 +8,7 @@
     "build": "set NODE_ENV=production && webpack -p --config ./task/webpack.prod.config.js",
     "dev": "set NODE_ENV=development && webpack-dev-server --config ./task/webpack.dev.config.js",
     "build:dll": "webpack -p --config ./task/webpack.dll.config.js",
-    "eslint": "eslint ./src --fix"
+    "eslint": "eslint ./src/**/*.js ./src/**/*.jsx --fix"
   },
   "author": "",
   "license": "ISC",
