@@ -1,12 +1,4 @@
-let isMobile = false;
-if ((/android/i).test(navigator.userAgent) || (/iphone|ipad/i).test(navigator.userAgent)) {
-  const meta = document.querySelector('meta[name="viewport"]');
-  const content = (meta as any).content;
-  if (!(/initial-scale=1,/g.test(content))) {
-    isMobile = true;
-  }
-}
-export const dpr = isMobile ? (window.devicePixelRatio || 1) : 1;
+export const dpr = window.devicePixelRatio || 1;
 
 export const fetchUrl = 'http://rapapi.org/mockjsdata/20089/';
 
