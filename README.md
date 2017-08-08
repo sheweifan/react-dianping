@@ -19,7 +19,7 @@
 	mkdir react-dianping
 	git clone https://github.com/sheweifan/react-dianping.git
 	cd react-dianping
-	npm i && npm start
+	npm i && npm run build:dll && npm run dev
 
 ## TODO-LIST
 * 详情页 `收藏` `点评` 功能 √
