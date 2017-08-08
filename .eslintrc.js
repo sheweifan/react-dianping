@@ -26,10 +26,15 @@
 
 module.exports = {
   parser: "babel-eslint",
+  env: {
+  	"browser": true,
+  	"es6": true
+  },
   "extends": "airbnb",
   "rules": {
     "no-unused-vars": 0,
     "max-len": [1, 120, 2, {ignoreComments: true}],
-    "prop-types": [2]
+    "prop-types": 0,//[2]
+  	"no-underscore-dangle": 0
   }
 }
