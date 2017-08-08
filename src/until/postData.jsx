@@ -2,8 +2,7 @@
 import obj2url from './obj2url';
 
 const postData = (url, body) =>
-  // console.log(url,obj2url(body))
-	 fetch(url, {
+  fetch(url, {
     method: 'POST',
     body: obj2url(body),
   })

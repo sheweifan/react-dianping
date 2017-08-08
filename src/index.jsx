@@ -9,7 +9,6 @@ import AppRouter from './router/index';
 import './static/styles/normalize.css';
 import './static/styles/common.css';
 
-/* eslint-disable no-undef */
 window.__DEV__ = process.env.NODE_ENV === 'development';
 console.log('开发环境', __DEV__);
 

@@ -1,24 +1,9 @@
-const obj2url = function (param, encode) {
+function obj2url(xparam, encode) {
+  let param = xparam;
   if (param == null) return '';
-  let paramStr = '';
-  // var t = typeof (param);
-  // if (t == 'string' || t == 'number' || t == 'boolean') {
-  //   paramStr += '&' + key + '=' + ((encode==null||encode) ? encodeURIComponent(param) : param);
-  // } else {
-  //   for (var i in param) {
-  //     var k = key == null ? i : key + (param instanceof Array ? '[' + i + ']' : '.' + i);
-  //     paramStr += obj2url(param[i], k, encode);
-  //   }
-  // }
-  // return paramStr;
   param = encode ? encodeURIComponent(param) : param;
-  for (const i in param) {
-    paramStr += `&${i}=${param[i]}`;
-  }
-
-  paramStr = `?${paramStr.substr(1)}`;
-  return paramStr;
-};
-
+  const paramStr = Object.keys(param).map(item => `&${item}=${param[item]}`).join('');
+  return `?${paramStr.substr(1)}`;
+}
 
 export default obj2url;
