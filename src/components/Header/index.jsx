@@ -6,9 +6,9 @@ const header = (props, context) => (
     <NavBar
       onLeftClick={() => {
         if (props.backTo) {
-          context.router.push(props.backTo);
+          context.router.history.push(props.backTo);
         } else {
-          context.router.goBack();
+          context.router.history.goBack();
         }
       }}
       rightContent={

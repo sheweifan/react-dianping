@@ -22,8 +22,8 @@ const HomeHeader = (props, context) => {
           <span className="header_mycenter_btn">
             {
               Object.keys(userInfo).length !== 0
-                ? <img src={userInfo.avatar} onClick={() => router.push('/user')} />
-                : <Icon type={icon_my} size="md" onClick={() => router.push('/login')} />
+                ? <img src={userInfo.avatar} onClick={() => router.history.push('/user')} />
+                : <Icon type={icon_my} size="md" onClick={() => router.history.push('/login')} />
             }
           </span>
         </div>

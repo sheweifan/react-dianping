@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { withRouter } from 'react-router';
 import { List, Icon } from 'antd-mobile';
 
 const Item = List.Item;
@@ -9,6 +10,7 @@ import EvaluateItem from '../../../../components/EvaluateItem/index';
 import { evaluateListUrl } from '../../../../config/index';
 import fetchData from '../../../../until/fetchData';
 
+@withRouter
 class DetailEvaluate extends Component {
  static contextTypes = {
    router: PropTypes.object,
@@ -18,7 +20,7 @@ class DetailEvaluate extends Component {
    // console.log(props)
    this.state = {
      data: [],
-     detailId: props.detailId,
+     detailId: props.match.params.id,
    };
  }
  render() {
@@ -31,7 +33,7 @@ class DetailEvaluate extends Component {
            <Item
              arrow="horizontal"
              extra="查看全部"
-             onClick={() => router.push(`evaluateList/${detailId}`)}
+             onClick={() => router.history.push(`/evaluateList/${detailId}`)}
            >
 							网上点评（
              {
@@ -54,7 +56,7 @@ class DetailEvaluate extends Component {
    );
  }
  componentDidMount() {
-   const { detailId } = this.props;
+   const { detailId } = this.state;
 
    fetchData(evaluateListUrl, {
      _id: detailId,

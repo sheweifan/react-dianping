@@ -4,10 +4,10 @@ import { List, Icon } from 'antd-mobile';
 
 const Item = List.Item;
 
-import { runToMap } from '../../../../until/runToMap';
+import runToMap from '../../../../until/runToMap';
 
-import icon_address from '../../../../static/icons/address.svg';
-import icon_phone from '../../../../static/icons/phone.svg';
+import iconAddress from '../../../../static/icons/address.svg';
+import iconPhone from '../../../../static/icons/phone.svg';
 
 const PhoneCallAndMap = (props) => {
   let { coordinate, phone, address } = props.data;
@@ -19,13 +19,13 @@ const PhoneCallAndMap = (props) => {
       <Item
         arrow="horizontal"
         onClick={() => runToMap(coordinate[0], coordinate[1], address)}
-        thumb={<Icon type={icon_address} />}
+        thumb={<Icon type={iconAddress} />}
       >
         {address}
       </Item>
       <Item
         arrow="horizontal"
-        thumb={<Icon type={icon_phone} />}
+        thumb={<Icon type={iconPhone} />}
       >
         <a href={`tel://${phone}`}>{phone}</a>
       </Item>

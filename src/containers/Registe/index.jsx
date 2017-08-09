@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Button, InputItem, WingBlank, WhiteSpace, Toast, Icon, List } from 'antd-mobile';
 
 import { appClassNameupdateUpdate } from '../../actions/appClassName';

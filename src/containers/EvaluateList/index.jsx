@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router';
 
 import Header from '../../components/Header/index';
 import EvaluateList from '../../components/EvaluateList/index';
@@ -18,13 +19,13 @@ import EvaluateList from '../../components/EvaluateList/index';
 // 	console.log('nextProps',nextProps)
 // 	return false;
 // }
-
+@withRouter
 class Evaluate extends Component {
   constructor(props) {
     super(props);
   }
   render() {
-    const id = this.props.routeParams.id;
+    const id = this.props.match.params.id;
     // console.log('id',id)
 	    return (
       <div>

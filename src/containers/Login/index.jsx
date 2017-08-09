@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Button, InputItem, WingBlank, WhiteSpace, Toast, Icon, List } from 'antd-mobile';
 
 import { appClassNameupdateUpdate } from '../../actions/appClassName';
@@ -15,6 +15,19 @@ import icon_password_show from '../../static/icons/password_show.svg';
 
 import './index.less';
 
+
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  clearAppClassName: () => dispatch(appClassNameupdateUpdate('')),
+  resetAppClassName: () => dispatch(appClassNameupdateUpdate('has_head')),
+  updateUserInfo: data => dispatch(updateUserInfo(data)),
+});
+
+@connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)
 class Login extends Component {
     static contextTypes = {
       router: PropTypes.object,
@@ -68,7 +81,7 @@ class Login extends Component {
         phonenum, password,
       })
         .then((data) => {
-          console.log(data);
+          // console.log(data);
           const { isOk, verified } = data;
           Toast.hide();
           if (isOk) {
@@ -77,8 +90,8 @@ class Login extends Component {
               updateUserInfo(data.data);
               Toast.success('登陆成功', 2, () => {
                 // router.goBack();
-                console.log(this.props, this.context);
-                router.push('/');
+                // console.log(this.props, this.context);
+                router.history.push('/');
               });
             } else {
               Toast.fail('密码错误', 2);
@@ -139,15 +152,4 @@ class Login extends Component {
 }
 
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-  clearAppClassName: () => dispatch(appClassNameupdateUpdate('')),
-  resetAppClassName: () => dispatch(appClassNameupdateUpdate('has_head')),
-  updateUserInfo: data => dispatch(updateUserInfo(data)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Login);
+export default Login;

@@ -71,7 +71,7 @@ const LinkGrid = (props, context) => (
       // 	pathname: '/search/'+data[index].category,
       // 	state: {info:data[index].text} 
       // });
-      context.router.push({
+      context.router.history.push({
         pathname: `/search/${encodeURIComponent(data[index].text)}`,
         state: { info: data[index].text },
       });

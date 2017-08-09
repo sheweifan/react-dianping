@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
 
 import { getItem } from '../../until/localStorage';
 import { updateUserInfo } from '../../actions/userinfo';
 
 // import TransitionGroup from 'react-addons-css-transition-group'
 
+const mapStateToProps = state => ({
+  appClassName: state.appClassName,
+});
+
+const mapDispatchToProps = dispatch => ({
+  updateUserInfo: data => dispatch(updateUserInfo(data)),
+});
+
+@withRouter
+@connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)
 class App extends Component {
   constructor(props) {
     super(props);
@@ -43,15 +57,4 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  appClassName: state.appClassName,
-});
-
-const mapDispatchToProps = dispatch => ({
-  updateUserInfo: data => dispatch(updateUserInfo(data)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(App);
+export default App;

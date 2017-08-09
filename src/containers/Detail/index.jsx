@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { WhiteSpace } from 'antd-mobile';
 import { connect } from 'react-redux';
 
-
 import Header from '../../components/Header/index';
 import LoadingWrap from '../../components/LoadingWrap/index';
 import FixedButton from '../../components/FixedButton/index';
@@ -33,7 +32,7 @@ class Detail extends Component {
  constructor(props, context) {
    super(props, context);
    this.state = {
-     detailId: props.routeParams.id,
+     detailId: props.id,
      data: {},
    };
  }
@@ -68,10 +67,10 @@ class Detail extends Component {
              disabledName: '登陆后即可点评',
              light: true,
              onClick: () => {
-               router.push(`evaluate/${detailId}`);
+               router.history.push(`evaluate/${detailId}`);
              },
              disabledClick: () => {
-               router.push('login');
+               router.history.push('login');
              },
              disabled: Object.keys(userInfo).length === 0,
            },

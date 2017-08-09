@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { WingBlank, WhiteSpace } from 'antd-mobile';
-import { Link } from 'react-router';
+import { Link } from 'react-router-dom';
 
 import LazyImg from '../LazyImgs';
 
