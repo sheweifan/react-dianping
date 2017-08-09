@@ -13,7 +13,8 @@ var config = merge(baseConfig,{
 		publicPath: '/',
 		open: false,
         inline: true,
-		disableHostCheck: true
+		disableHostCheck: true,
+		historyApiFallback: true
 	},
 	plugins:[
 		new webpack.DefinePlugin({

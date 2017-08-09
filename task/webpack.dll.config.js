@@ -8,7 +8,7 @@ var cfg = require('./config.js').cfg;
 
 var dll = {
 	entry: {
-		vendor: ['react','react-dom','react-router','react-redux','redux']
+		vendor: ['react','react-dom','react-router-dom','react-redux','redux']
     },
     // 出口
 	output: {
