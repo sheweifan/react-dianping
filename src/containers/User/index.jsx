@@ -1,7 +1,5 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, WingBlank, WhiteSpace, List, Icon } from 'antd-mobile';
-
-const Item = List.Item;
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/index';
@@ -14,6 +12,8 @@ import { removeItem } from '../../until/localStorage';
 
 
 import icon_collected from '../../static/icons/collected.svg';
+
+const Item = List.Item;
 
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
