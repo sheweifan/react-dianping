@@ -1,5 +1,7 @@
 import React from 'react';
-import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+// import { Router, Route, hashHistory, IndexRoute } from 'react-router';
+import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+
 
 import App from '../containers/App/index';
 import Home from '../containers/Home/index';
@@ -16,21 +18,24 @@ import NotFound from '../containers/NotFound/index';
 
 
 const AppRouter = () => (
-  <Router history={hashHistory}>
-    <Route path="/" component={App}>
-      <IndexRoute component={Home} />
-      <Route path="search/:category(/:keyword)" component={Search} />
-      <Route path="detail/:id" component={Detail} />
-      <Route path="evaluateList/:id" component={EvaluateList} />
-      <Route path="evaluate/:id" component={Evaluate} />
-      <Route path="login" component={Login} />
-      <Route path="registe" component={Registe} />
-      <Route path="user" component={User} />
-      <Route path="user/collect" component={UserCollect} />
-
-      <Route path="*" component={NotFound} />
-    </Route>
+  <Router>
+    <App>
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/search/:category(/:keyword)" component={Search} />
+        <Route path="/detail/:id" component={Detail} />
+        <Route path="/evaluateList/:id" component={EvaluateList} />
+        <Route path="/evaluate/:id" component={Evaluate} />
+        <Route path="/login" component={Login} />
+        <Route path="/registe" component={Registe} />
+        <Route path="/user" component={User} />
+        <Route path="/user/collect" component={UserCollect} />
+        <Route component={NotFound} />
+      </Switch>
+    </App>
   </Router>
 );
+
+// <Route path="*" component={NotFound} />
 
 export default AppRouter;
