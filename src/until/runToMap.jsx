@@ -8,6 +8,4 @@ const runToMap = (x, y, name) => {
   window.open(`${mapUrl}dest=${x},${y}&destName=${name}&hideRouteIcon=1&key=${mapKey}`);
 };
 
-export default {
-  runToMap,
-};
+export default runToMap;
