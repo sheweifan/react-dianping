@@ -1,6 +1,6 @@
 import React from 'react';
 // import { Router, Route, hashHistory, IndexRoute } from 'react-router';
-import {BrowserRouter as Router, Route, Link, Switch} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 
 import App from '../containers/App/index';
