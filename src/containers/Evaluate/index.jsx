@@ -42,7 +42,6 @@ class Evaluate extends Component {
    const { router } = this.context;
    const { id } = this.props.match.params;
 
-   console.log(router);
    Toast.loading('正在提交', 0);
 
    fetchData(evaluateUrl, {
@@ -53,7 +52,7 @@ class Evaluate extends Component {
        if (data.submitSuccess) {
          Toast.hide();
          Toast.success('评价成功', 1, () => {
-           router.goBack();
+           router.history.goBack();
          });
        }
      }
@@ -65,7 +64,7 @@ class Evaluate extends Component {
    const { router } = this.context;
    const { id } = this.props.match.params;
    if (Object.keys(userInfo).length === 0) {
-     router.push(`/detail/${id}`);
+     router.history.push(`/detail/${id}`);
    }
    return (
      <div className="evaluate">
