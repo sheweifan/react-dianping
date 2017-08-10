@@ -41,7 +41,7 @@ const CollectHOC = WrappedComponent => class extends Component {
     if (Object.keys(userInfo).length === 0) {
       // 未登陆
       Toast.fail('请先登录', 2, () => {
-        router.push('/login');
+        router.history.push('/login');
       }, true);
     } else {
       // 已登陆

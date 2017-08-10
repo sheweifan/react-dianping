@@ -16,6 +16,18 @@ import './index.less';
 
 const TIMEOUT = 10;
 
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = dispatch => ({
+  clearAppClassName: () => dispatch(appClassNameupdateUpdate('')),
+  resetAppClassName: () => dispatch(appClassNameupdateUpdate('has_head')),
+  updateUserInfo: data => dispatch(updateUserInfo(data)),
+});
+
+@connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)
 class Registe extends Component {
     static contextTypes = {
       router: PropTypes.object,
@@ -120,7 +132,7 @@ class Registe extends Component {
           if (isOk) {
             if (registerSuccess) {
               Toast.success('注册成功', 2, () => {
-                router.push({ pathname: '/login', state: { phonenum } });
+                router.history.push({ pathname: '/login', state: { phonenum } });
               });
             } else {
               Toast.fail('注册失败，请稍后重试', 2);
@@ -223,15 +235,4 @@ class Registe extends Component {
 }
 
 
-const mapStateToProps = state => ({});
-
-const mapDispatchToProps = dispatch => ({
-  clearAppClassName: () => dispatch(appClassNameupdateUpdate('')),
-  resetAppClassName: () => dispatch(appClassNameupdateUpdate('has_head')),
-  updateUserInfo: data => dispatch(updateUserInfo(data)),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(Registe);
+export default Registe;

@@ -22,13 +22,13 @@ const AppRouter = () => (
     <App>
       <Switch>
         <Route exact path="/" component={Home} />
-        <Route path="/search/:category(/:keyword)" component={Search} />
+        <Route path="/search/:category/:keyword" component={Search} />
         <Route path="/detail/:id" component={Detail} />
         <Route path="/evaluateList/:id" component={EvaluateList} />
         <Route path="/evaluate/:id" component={Evaluate} />
         <Route path="/login" component={Login} />
         <Route path="/registe" component={Registe} />
-        <Route path="/user" component={User} />
+        <Route exact path="/user" component={User} />
         <Route path="/user/collect" component={UserCollect} />
         <Route component={NotFound} />
       </Switch>

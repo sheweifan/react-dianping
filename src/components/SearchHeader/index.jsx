@@ -16,10 +16,10 @@ const SearchHeader = (props, context) => {
         mode="light"
         onLeftClick={() => {
           if (props.backTo) {
-            router.push(props.backTo);
+            router.history.push(props.backTo);
           } else {
             // router.goBack();
-            router.push('/');
+            router.history.push('/');
           }
         }}
       >

@@ -1,14 +1,15 @@
 import React, { Component, PropTypes } from 'react';
 import { NavBar } from 'antd-mobile';
 
-const header = (props, context) => (
-  <div className="header_contain header_other_contain">
+const Header = (props, context) => {
+  const { router } = context;
+  return (<div className="header_contain header_other_contain">
     <NavBar
       onLeftClick={() => {
         if (props.backTo) {
-          context.router.history.push(props.backTo);
+          router.history.push(props.backTo);
         } else {
-          context.router.history.goBack();
+          router.history.goBack();
         }
       }}
       rightContent={
@@ -21,19 +22,19 @@ const header = (props, context) => (
         props.title
       }
     </NavBar>
-  </div>
-);
+  </div>)
+};
 
-header.contextTypes = {
+Header.contextTypes = {
   router: PropTypes.object,
 };
 
 
-header.PropTypes = {
+Header.PropTypes = {
   title: PropTypes.string.isRequired,
   backTo: PropTypes.string,
   rightContent: PropTypes.element,
 };
 
 
-export default header;
+export default Header;

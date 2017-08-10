@@ -4,21 +4,6 @@ import { withRouter } from 'react-router';
 import Header from '../../components/Header/index';
 import EvaluateList from '../../components/EvaluateList/index';
 
-// let Evaluate = (props) =>{
-//     const id = props.routeParams.id;
-// 	console.log('Evaluate',props);
-//     return (
-//          <div>
-//                 <EvaluateList body={{_id:id}} />
-//                 <Header title="评价列表"/>
-//          </div>
-//     );
-// };
-
-// Evaluate.shouldComponentUpdate = (nextProps)=>{
-// 	console.log('nextProps',nextProps)
-// 	return false;
-// }
 @withRouter
 class Evaluate extends Component {
   constructor(props) {
@@ -26,13 +11,12 @@ class Evaluate extends Component {
   }
   render() {
     const id = this.props.match.params.id;
-    // console.log('id',id)
-	    return (
+    return (
       <div>
-    <EvaluateList body={{ _id: id }} />
-    <Header title="评价列表" />
-  </div>
-	    );
+        <EvaluateList body={{ _id: id }} />
+        <Header title="评价列表" />
+      </div>
+    );
   }
   // TODO fix 路由跳转重复渲染
   shouldComponentUpdate(nextProps, nextState) {

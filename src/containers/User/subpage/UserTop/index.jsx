@@ -4,8 +4,6 @@ import './index.less';
 
 const UserTop = (props) => {
   const { avatar, username, phonenum } = props.userInfo;
-  console.log(avatar, username, phonenum);
-
   const avatarBgStyle = {
     	backgroundImage: `url(${avatar})`,
   };

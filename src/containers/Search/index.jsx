@@ -1,49 +1,49 @@
 import React, { Component, PropTypes } from 'react';
+import { withRouter } from 'react-router';
 
 import { MallListUrl } from '../../config/index';
 import SearchHeader from '../../components/SearchHeader/index';
 import MallList from '../../components/MallList/index';
 
+@withRouter
 class Search extends Component {
- static contextTypes = {
-	    router: PropTypes.object,
- }
+  static contextTypes = {
+    router: PropTypes.object,
+  }
+  constructor(props, context) {
+    super(props, context);
+  }
+  render() {
+    const { match, location } = this.props;
+    const { router } = this.context;
 
- constructor(props, context) {
-   super(props, context);
- }
- render() {
-   const { routeParams, location } = this.props;
+    const param = match.params;
+    const keyword = param.keyword;
+    const category = param.category;
 
-   const param = routeParams;
-   const keyword = param.keyword;
-   const category = param.category;
+    const info = location.state ? location.state.info : category;
+    const headerInfo = keyword ? `搜索"${keyword}"的结果` : `分类"${info}"`;
+    const url = MallListUrl;
+    const obj = {};
 
-   const info = location.state ? location.state.info : category;
-   const headerInfo = keyword ? `搜索"${keyword}"的结果` : `分类"${info}"`;
-   const url = MallListUrl;
-   const obj = {};
+    if (keyword) {
+    obj.keyword = keyword;
+    }
 
-   if (keyword) {
-     obj.keyword = keyword;
-   }
+    if (category) {
+    obj.category = category;
+    }
 
-   if (category) {
-     obj.category = category;
-   }
-
-   return (
-     <div>
-
-       <MallList
-         renderHeader={() => headerInfo}
-         body={obj}
-       />
-
-       <SearchHeader defaultValue={param.keyword} enterChange={(e) => { this.context.router.push(`/search/all/${e}`); }} />
-     </div>
-   );
- }
+    return (
+    <div>
+      <MallList
+      renderHeader={() => headerInfo}
+      body={obj}
+      />
+      <SearchHeader defaultValue={param.keyword} enterChange={(e) => { router.history.push(`/search/all/${e}`); }} />
+    </div>
+  );
+  }
 }
 
 export default Search;

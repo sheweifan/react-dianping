@@ -10,13 +10,14 @@ import ListHeader from '../../components/ListHeader/index';
 
 const Home = (props, context) => {
   const { userInfo } = props;
+  const { router } = context;
   return (
     <div>
       <Banner />
       <LinkGrid />
       <MallList renderHeader={() => '猜你喜欢'} body={{ category: 'guess' }} />
       <HomeHeader
-        enterChange={(e) => { context.router.push(`/search/all/${encodeURIComponent(e)}`); }}
+        enterChange={(e) => { router.history.push(`/search/all/${encodeURIComponent(e)}`); }}
         userInfo={userInfo}
       />
     </div>

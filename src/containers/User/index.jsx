@@ -45,9 +45,9 @@ class User extends Component {
               <Item
                 arrow="horizontal"
                 thumb={<Icon type={icon_collected} />}
-                onClick={() => router.push('/user/collect')}
+                onClick={() => router.history.push('/user/collect')}
               >
-                        我的收藏
+                我的收藏
               </Item>
             </List>
             <WingBlank size="md">
@@ -56,10 +56,10 @@ class User extends Component {
                 onClick={() => {
                   removeItem('userInfo');
                   updateUserInfo({});
-                  router.replace('/');
+                  router.history.replace('/');
                 }}
               >
-                        退出登陆
+                退出登陆
               </Button>
               <WhiteSpace size="md" />
             </WingBlank>
