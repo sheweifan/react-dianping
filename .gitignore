@@ -3,4 +3,5 @@
 npm-debug.log
 .eslintcache
 .DS_Store
-manifest.json
+/manifest.json
+/dist
