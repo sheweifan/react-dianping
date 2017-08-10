@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import { withRouter } from 'react-router';
 import { WhiteSpace, List, TextareaItem, Toast } from 'antd-mobile';
-
-const Item = List.Item;
 import { connect } from 'react-redux';
 
 import Header from '../../components/Header/index';
@@ -14,30 +13,34 @@ import { evaluateUrl } from '../../config/index';
 
 import './index.less';
 
+const Item = List.Item;
+
 const mapStateToProps = state => ({
   userInfo: state.userInfo,
 });
-
 const mapDispatchToProps = dispatch => ({});
 const default_val = 5;
 
-@connect(mapStateToProps, mapDispatchToProps)
+@withRouter
+@connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)
 class Evaluate extends Component {
- static contextTypes = {
-	    router: PropTypes.object,
- }
- constructor(props, context) {
+  static contextTypes = {
+  router: PropTypes.object,
+  }
+  constructor(props, context) {
    super(props, context);
-   console.log(props);
    this.state = {
      context: '',
      count: default_val,
    };
- }
- handleSubmit() {
+  }
+  handleSubmit() {
    const { count, context } = this.state;
    const { router } = this.context;
-   const { id } = this.props.routeParams;
+   const { id } = this.props.match.params;
 
    console.log(router);
    Toast.loading('正在提交', 0);
@@ -55,12 +58,12 @@ class Evaluate extends Component {
        }
      }
    });
- }
- render() {
+  }
+  render() {
    const { userInfo } = this.props;
    const { context } = this.state;
    const { router } = this.context;
-   const { id } = this.props.routeParams;
+   const { id } = this.props.match.params;
    if (Object.keys(userInfo).length === 0) {
      router.push(`/detail/${id}`);
    }
@@ -85,11 +88,9 @@ class Evaluate extends Component {
            <span className="" onClick={this.handleSubmit.bind(this)}>发布</span>
          }
        />
-
      </div>
-
    );
- }
+  }
 }
 
 

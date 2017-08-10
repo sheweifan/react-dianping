@@ -2,12 +2,11 @@ import React, { Component, PropTypes } from 'react';
 import { findDOMNode } from 'react-dom';
 import { List } from 'antd-mobile';
 
-const Item = List.Item;
-
 import Stars from '../../../../components/Stars/index';
 
 import './index.less';
 
+const Item = List.Item;
 const star_info = [
   '',
   '超级垃圾',
@@ -16,7 +15,6 @@ const star_info = [
   '有点垃圾',
   '不垃圾',
 ];
-
 
 class StarsEdit extends Component {
   constructor(props) {
@@ -43,7 +41,6 @@ class StarsEdit extends Component {
   render() {
     const { count } = this.state;
     const { changEnd } = this.props;
-    console.log('render');
     return (
       <Item
         extra={<span className="start_info"> {star_info[count]} </span>}

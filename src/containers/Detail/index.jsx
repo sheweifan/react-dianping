@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { withRouter } from 'react-router';
 import { WhiteSpace } from 'antd-mobile';
 import { connect } from 'react-redux';
 
@@ -24,7 +25,11 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => ({
 });
 
-@connect(mapStateToProps, mapDispatchToProps)
+@withRouter
+@connect(
+  mapStateToProps, 
+  mapDispatchToProps
+)
 class Detail extends Component {
  static contextTypes = {
 	    router: PropTypes.object,
@@ -32,7 +37,7 @@ class Detail extends Component {
  constructor(props, context) {
    super(props, context);
    this.state = {
-     detailId: props.id,
+     detailId: props.match.params.id,
      data: {},
    };
  }
@@ -40,7 +45,6 @@ class Detail extends Component {
    const { data, detailId } = this.state;
    const { router } = this.context;
    const { userInfo } = this.props;
-   // console.log('data.collected',data.collected	)
    return (
      <div>
        <LoadingWrap loading={Object.keys(data).length === 0}>
@@ -67,7 +71,7 @@ class Detail extends Component {
              disabledName: '登陆后即可点评',
              light: true,
              onClick: () => {
-               router.history.push(`evaluate/${detailId}`);
+               router.history.push(`/evaluate/${detailId}`);
              },
              disabledClick: () => {
                router.history.push('login');
