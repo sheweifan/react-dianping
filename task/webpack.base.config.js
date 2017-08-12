@@ -25,7 +25,8 @@ module.exports = {
 		new HtmlWebpackPlugin({
 			prod: is_prod,
 			title: 'test title',
-			template: './src/index.tpl.ejs'
+			template: './src/index.tpl.ejs',
+			favicon:'./src/static/favicon.ico'
 		}),
 		// 体积变小，加快运行速度
 	    new webpack.optimize.ModuleConcatenationPlugin(),
