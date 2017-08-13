@@ -2,7 +2,6 @@ import React from 'react';
 // import { Router, Route, hashHistory, IndexRoute } from 'react-router';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
-
 import App from '../containers/App/index';
 import Home from '../containers/Home/index';
 import Search from '../containers/Search/index';
@@ -13,9 +12,7 @@ import Login from '../containers/Login/index';
 import User from '../containers/User/index';
 import UserCollect from '../containers/UserCollect/index';
 import Registe from '../containers/Registe/index';
-
 import NotFound from '../containers/NotFound/index';
-
 
 const AppRouter = () => (
   <Router>
@@ -36,7 +33,5 @@ const AppRouter = () => (
     </App>
   </Router>
 );
-
-// <Route path="*" component={NotFound} />
 
 export default AppRouter;

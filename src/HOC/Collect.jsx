@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Toast, Modal } from 'antd-mobile';
 
-const alert = Modal.alert;
-
 import { collectUrl } from '../config/index';
 import postData from '../until/postData';
+
+const alert = Modal.alert;
 
 const CollectHOC = WrappedComponent => class extends Component {
   static contextTypes = {
@@ -15,6 +15,24 @@ const CollectHOC = WrappedComponent => class extends Component {
     this.state = {
       collected: props.collected,
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+  render() {
+    const { userInfo } = this.props;
+    const { collected } = this.state;
+    // console.log(this.props)
+    // console.log('Object.keys(userInfo).length !== 0 && collected ',Object.keys(userInfo).length , collected )
+    return (
+      <div onClick={this.handleClick}>
+        <WrappedComponent collected={Object.keys(userInfo).length !== 0 && collected} />
+      </div>
+    );
+  }
+  componentWillReceiveProps(nextprops) {
+    // console.log('nextprops',nextprops)
+    this.setState({
+      collected: nextprops.collected,
+    });
   }
   updateCollectState() {
     const { userInfo, detailId } = this.props;
@@ -24,12 +42,10 @@ const CollectHOC = WrappedComponent => class extends Component {
     })
       .then((data) => {
         const { isOk, changeSuccess } = data;
-        if (isOk) {
-          if (changeSuccess) {
-            this.setState({
-              collected: !this.state.collected,
-            });
-          }
+        if (isOk && changeSuccess) {
+          this.setState({
+            collected: !this.state.collected,
+          });
         }
       });
   }
@@ -43,44 +59,24 @@ const CollectHOC = WrappedComponent => class extends Component {
       Toast.fail('请先登录', 2, () => {
         router.history.push('/login');
       }, true);
+    } else if (collected) {
+      // 已登陆 && 已收藏
+      alert('收藏', '确定取消收藏？', [
+        {
+          text: '取消',
+        },
+        {
+          text: '确认',
+          onPress: () => {
+            // console.log('ok')
+            self.updateCollectState();
+          },
+        },
+      ]);
     } else {
-      // 已登陆
-      if (collected) {
-        // 已收藏
-        alert('收藏', '确定取消收藏？', [
-          {
-            text: '取消',
-          },
-          {
-            text: '确认',
-            onPress: () => {
-              // console.log('ok')
-              self.updateCollectState();
-            },
-          },
-        ]);
-      } else {
-        // 未收藏
-        this.updateCollectState();
-      }
+      // 未收藏
+      this.updateCollectState();
     }
-  }
-  render() {
-    const { userInfo } = this.props;
-    const { collected } = this.state;
-    // console.log(this.props)
-    // console.log('Object.keys(userInfo).length !== 0 && collected ',Object.keys(userInfo).length , collected )
-    return (
-      <div onClick={this.handleClick.bind(this)}>
-        <WrappedComponent collected={Object.keys(userInfo).length !== 0 && collected} />
-      </div>
-    );
-  }
-  componentWillReceiveProps(nextprops) {
-    // console.log('nextprops',nextprops)
-    this.setState({
-      collected: nextprops.collected,
-    });
   }
 };
 

@@ -49,7 +49,6 @@ class App extends Component {
       </div>
     );
   }
-
   componentDidMount() {
     this.setState({
       loading: false,

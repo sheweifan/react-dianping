@@ -2,6 +2,7 @@
 *.log
 npm-debug.log
 .eslintcache
+src/.DS_Store
 .DS_Store
 /manifest.json
 /dist
