@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Toast, Modal } from 'antd-mobile';
 
-const alert = Modal.alert;
-
 import { collectUrl } from '../config/index';
 import postData from '../until/postData';
+
+const alert = Modal.alert;
 
 const CollectHOC = WrappedComponent => class extends Component {
   static contextTypes = {
@@ -13,8 +13,9 @@ const CollectHOC = WrappedComponent => class extends Component {
   constructor(props, context) {
     super(props, context);
     this.state = {
-      collected: props.collected,
+      collected: props.collected
     };
+    this.handleClick = this.handleClick.bind(this);
   }
   updateCollectState() {
     const { userInfo, detailId } = this.props;
@@ -71,7 +72,7 @@ const CollectHOC = WrappedComponent => class extends Component {
     // console.log(this.props)
     // console.log('Object.keys(userInfo).length !== 0 && collected ',Object.keys(userInfo).length , collected )
     return (
-      <div onClick={this.handleClick.bind(this)}>
+      <div onClick={this.handleClick}>
         <WrappedComponent collected={Object.keys(userInfo).length !== 0 && collected} />
       </div>
     );
