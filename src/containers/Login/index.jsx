@@ -10,8 +10,8 @@ import { loginUrl } from '../../config/index';
 import postData from '../../until/postData';
 import { setItem } from '../../until/localStorage';
 
-import icon_password_hide from '../../static/icons/password_hide.svg';
-import icon_password_show from '../../static/icons/password_show.svg';
+import iconPasswordHide from '../../static/icons/password_hide.svg';
+import iconPasswordShow from '../../static/icons/password_show.svg';
 
 import './index.less';
 
@@ -128,7 +128,7 @@ class Login extends Component {
               value={password}
               extra={<Icon
                 onClick={() => this.setState({ passwordDisplay: !passwordDisplay })}
-                type={passwordDisplay ? icon_password_show : icon_password_hide}
+                type={passwordDisplay ? iconPasswordShow : iconPasswordHide}
               />}
             >
                         密码
