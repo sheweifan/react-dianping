@@ -7,23 +7,23 @@ const merge = require('webpack-merge');
 const cfg = require('./config.js').cfg;
 
 const dll = {
-  entry: {
-    vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux'],
-  },
-  // 出口
-  output: {
-    filename: '[name].js',
-    path: cfg.DIST_PATH,
-	    library: 'vendor',
-  },
+	entry: {
+		vendor: ['react', 'react-dom', 'react-router-dom', 'react-redux', 'redux'],
+	},
+	// 出口
+	output: {
+		filename: '[name].js',
+		path: cfg.DIST_PATH,
+		library: 'vendor',
+	},
 
-  plugins: [
-    new webpack.DllPlugin({
-		     path: './manifest.json',
-		     name: 'vendor',
-		     context: __dirname,
-    }),
-  ],
+	plugins: [
+		new webpack.DllPlugin({
+			path: './manifest.json',
+			name: 'vendor',
+			context: __dirname,
+		}),
+	],
 };
 
 
