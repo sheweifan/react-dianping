@@ -12,11 +12,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractLESS = new ExtractTextPlugin('styles.css');
 
 const cfg = require('./config.js').cfg;
-
+console.log(cfg.DIST_PATH);
 const config = merge(baseConfig, {
   // 入口
   entry: {
-    app: './src/index.prod.jsx',
+    app: './src/index.prod.js',
     vendor: ['react', 'react-dom'],
   },
   plugins: [

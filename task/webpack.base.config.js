@@ -15,13 +15,17 @@ module.exports = {
   },
   // 插件
   plugins: [
-    	// 模块热加载
-    	new webpack.HotModuleReplacementPlugin(),
-    	// 生成html
+  	// 模块热加载
+  new webpack.HotModuleReplacementPlugin(),
+  	// 生成html
     new HtmlWebpackPlugin({
       prod: is_prod,
       title: 'test title',
       template: './src/index.tpl.ejs',
+      minify: {
+          removeComments: true,
+          collapseWhitespace: true
+      }
     }),
     // 体积变小，加快运行速度
 	    new webpack.optimize.ModuleConcatenationPlugin(),
