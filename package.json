@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "set NODE_ENV=production && webpack -p --config ./task/webpack.prod.config.js",
+    "build": "rm -rf ./dist && set NODE_ENV=production && webpack -p --config ./task/webpack.prod.config.js",
     "dev": "set NODE_ENV=development && webpack-dev-server --config ./task/webpack.dev.config.js",
     "build:dll": "webpack -p --config ./task/webpack.dll.config.js",
     "eslint": "eslint ./src/**/*.js ./src/**/*.jsx --fix"

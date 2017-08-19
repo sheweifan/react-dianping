@@ -1,6 +1,6 @@
 
 const webpack = require('webpack');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+// const CleanWebpackPlugin = require('clean-webpack-plugin');
 const baseConfig = require('./webpack.base.config.js');
 const merge = require('webpack-merge');
 const Visualizer = require('webpack-visualizer-plugin'); // remove it in production environment
@@ -12,7 +12,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const extractLESS = new ExtractTextPlugin('styles.css');
 
 const cfg = require('./config.js').cfg;
-console.log(cfg.DIST_PATH);
+// console.log(cfg.DIST_PATH);
 const config = merge(baseConfig, {
   // 入口
   entry: {
@@ -22,7 +22,7 @@ const config = merge(baseConfig, {
   plugins: [
     // 样式
     extractLESS,
-    new CleanWebpackPlugin([cfg.DIST_PATH]),
+    // new CleanWebpackPlugin([cfg.DIST_PATH]),
     // 压缩代码
     new webpack.optimize.UglifyJsPlugin({
 		  // 最紧凑的输出
