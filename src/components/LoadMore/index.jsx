@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ListView, ActivityIndicator } from 'antd-mobile';
 
 import ListHeader from '../ListHeader/index';

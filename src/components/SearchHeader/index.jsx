@@ -1,8 +1,8 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { NavBar, Icon } from 'antd-mobile';
 
 import SearchInput from '../SearchInput/index';
-
 import icon_my from '../../static/icons/my.svg';
 
 import './index.less';

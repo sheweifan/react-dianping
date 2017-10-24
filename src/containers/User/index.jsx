@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Button, WingBlank, WhiteSpace, List, Icon } from 'antd-mobile';
 import { connect } from 'react-redux';
 

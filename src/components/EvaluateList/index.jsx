@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import EvaluateItem from '../EvaluateItem/index';
 import LoadMore from '../LoadMore/index';

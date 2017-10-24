@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { ListView, ActivityIndicator, WingBlank, WhiteSpace } from 'antd-mobile';
 
 import MallItem from '../MallItem/index';
